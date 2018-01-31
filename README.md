@@ -7,13 +7,22 @@
 
 ## Architecture
 Chat Channel (e.g. Facebook)
-||
+
+_dialogflow integration_
+
 Dialog Flow
-||
+
+_dialogflow webhook_
+
 Express.js REST API
-|
+
 Node.js Server
 
+Mongoose Model
+
+_mongodb protocol_
+
+MongoDB instance on mlab.com
 
 
 
