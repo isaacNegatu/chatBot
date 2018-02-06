@@ -13,7 +13,9 @@
     * Mongoose Model
 4. MongoDB instance on mlab.com
 
-
+## Implementation notes
+### Action naming
+Use descriptive action names that are period deliminated, for instance: `user.name` This allows action handlers to use the `string.startsWith()` function to sort incoming requests and pass them to the correct handlers. See ./actions/index.js and ./actions/test/index.js for an example.
 
 
 -----------------

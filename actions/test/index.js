@@ -1,11 +1,14 @@
 module.exports = function(req, res) {
   let action = req.body.result.action;
   let reply = {
-    'speech': '
-  }
+    'speech': `A default response`
+  };
+  
   if (action.startsWith('test.hello')) {
     reply = {
       'speech': `Hello world!`
     };
   }
+  
+  res.status(200).json(reply);
 }
