@@ -2,13 +2,13 @@
 // where your node app starts
 
 // init project
-var express = require('express');
-var app = express();
+let express = require('express');
+let app = express();
 
-var db = require('monk')(process.env.MONGODB_URI);
-var messages = db.get('messages');
+let db = require('monk')(process.env.MONGODB_URI);
+let messages = db.get('messages');
 
-var apiaiHandler = require('./actions');
+let actionHandler = require('./actions');
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -22,13 +22,13 @@ app.get("/", function (request, response) {
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/apiai", function (request, response) {
+app.post("/action", function (request, response) {
   console.log(request.body);
   messages.insert(request.body);
-  apiaiHandler(request, response, farconData);
+  actionHandler(request, response);
 });
 
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
+let listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
