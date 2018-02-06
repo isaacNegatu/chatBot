@@ -1,23 +1,24 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-
-  "name": "my-glitch-app",
+  "//1": "Minnesota State chatbot project",
+  "name": "mnstate-webhook-test",
   "version": "0.0.1",
-  "description": "What am I about?",
+  "description": "This project",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mongodb": "^3.0.2",
+    "mongoose": "^5.0.3",
+    "dialogflow": "^4.0.3",
+    "monk": "^6.0.5"
   },
   "engines": {
     "node": "8.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/welcome-project"
+    "url": "https://github.com/EliKrumholz/mnstate-bot"
   },
   "license": "MIT",
   "keywords": [
