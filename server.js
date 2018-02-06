@@ -11,22 +11,12 @@ let bodyParser = require('body-parser');
 let db = require('monk')(process.env.MONGODB_URI);
 let messages = db.get('messages');
 
-let actionHandler = require('./actions');
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+
+let actionHandler = require('./actions');
 
 // Use bodyParser to handle json
 app.use(bodyParser.json());
-
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
-
-// This is an example route for serving a web page
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (request, response) {
