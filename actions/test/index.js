@@ -7,7 +7,7 @@ module.exports = function(req, res) {
   
   if (action.startsWith('test.hello')) {
     reply = {
-      'speech': `Hello ${user.name}!`
+      'speech': `Hello world!`
     };
   }
   
