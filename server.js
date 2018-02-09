@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.post("/action", function (req, res) {
   
   
-  messages.insert(req.body);
+  messages.insert(req.body.result);
   console.log(messages.find({}));
   // Save message in database
   actionHandler(req, res);
