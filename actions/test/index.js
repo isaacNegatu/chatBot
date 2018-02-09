@@ -11,5 +11,5 @@ module.exports = function(req, res) {
     };
   }
   
-  console.log(res.status(200).json(reply));
+  res.status(200).json(reply);
 }
