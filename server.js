@@ -9,7 +9,7 @@ let bodyParser = require('body-parser');
 // Create a simple connection to the MONGODB database
 // to store messages.
 let db = require('monk')(process.env.MONGODB_URI);
-let messages = db.get('whatPeopleSaid');
+let messages = db.get('Colleges');
 
 
 
@@ -20,9 +20,8 @@ app.use(bodyParser.json());
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
-  console.log(req.body);
   
-  messages.insert(req.body);
+  console.log(messages.find());
   // Save message in database
   actionHandler(req, res);
   
