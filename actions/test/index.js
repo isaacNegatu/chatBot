@@ -5,11 +5,11 @@ module.exports = function(req, res) {
     'speech': `A default response`
   };
   
-  if (action.startsWith('test.hello')) {
+  if (action.startsWith('input.welcome')) {
     reply = {
       'speech': `Hello world!`
     };
   }
   
-  res.status(200).json(reply);
+  console.log(res.status(200).json(reply));
 }
