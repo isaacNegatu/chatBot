@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   console.log(req.body);
+  
   messages.insert(req.body);
   // Save message in database
   actionHandler(req, res);
