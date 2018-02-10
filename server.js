@@ -25,11 +25,8 @@ app.post("/action", function (req, res) {
   messages.insert(req.body.result);
   var data = messages.find();
   
-  console.log(data);
+  data
   
-  data.then(function (result){
-    console.log(result);
-  });
   // Save message in database
   actionHandler(req, res);
   
