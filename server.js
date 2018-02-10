@@ -23,7 +23,13 @@ app.post("/action", function (req, res) {
   
   
   messages.insert(req.body.result);
-  console.log(messages.find({}));
+  var data = messages.find();
+  
+  console.log(data);
+  
+  data.then(function (result){
+    console.log(result);
+  });
   // Save message in database
   actionHandler(req, res);
   
