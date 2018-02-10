@@ -8,7 +8,10 @@ let bodyParser = require('body-parser');
 
 // Create a simple connection to the MONGODB database
 // to store messages.
-let db = require('monk')(process.env.MONGODB_URI);
+let monk = require('monk');
+
+let db = monk(process.env.MONGODB_URI);
+
 let messages = db.get('Colleges');
 
 
@@ -25,7 +28,11 @@ app.post("/action", function (req, res) {
   messages.insert(req.body.result);
   var data = messages.find();
   
-  data
+  data.find({}).next(function () {
+    
+    
+    
+  })
   
   // Save message in database
   actionHandler(req, res);
