@@ -10,6 +10,8 @@ let bodyParser = require('body-parser');
 // to store messages.
 let monk = require('monk');
 
+let extend = require('
+
 let db = monk(process.env.MONGODB_URI);
 
 let messages = db.get('Colleges');
