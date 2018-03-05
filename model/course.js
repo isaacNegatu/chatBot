@@ -1,6 +1,7 @@
 let mongoose = require('mongoose');
 
 var CourseSchema = new mongoose.Schema({
+  _id : mongoose.Schema.Types.ObjectId,
   title: String, 
   courseID: { // Check with team
     schoolID: String,
