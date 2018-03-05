@@ -7,6 +7,10 @@ let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 
+var Course = require("./model/course");
+var CommonFees = require("./model/commonFees");
+
+
 // Create a simple connection to the MONGODB database
 // to store messages.
 let monk = require('monk');
@@ -31,6 +35,19 @@ mongoose.connection.on('open', function (){
 });
 
 
+var book1 = new Book({
+  _id: new mongoose.Types.ObjectId(),
+  title: "titleNombreUno",
+  author: "isaac",
+});
+
+var book2 = new Book({
+  _id: new mongoose.Types.ObjectId(),
+  title: "sometitile",
+  author: "someauthor"
+});
+
+
 
 let actionHandler = require('./actions');
 
@@ -40,8 +57,8 @@ app.use(bodyParser.json());
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
-  
-  messages.insert(req.body.result.resolvedQuery);
+  console.log(req.body.result.resolvedQuery);
+  messages.insert(req.body.result.metadata);
   
   // Save message in database
   actionHandler(req, res);
