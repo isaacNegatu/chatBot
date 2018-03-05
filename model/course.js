@@ -24,8 +24,8 @@ var CourseSchema = new mongoose.Schema({
       day: {
       	name: String,
         time: {
-        	Start: Number,
-          End: Number,
+        	Start: String,
+          End: String,
         },
       }
     }],
