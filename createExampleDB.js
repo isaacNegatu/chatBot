@@ -14,7 +14,7 @@ mongoose.connection.on('open', function (){
     if (err) console.log(err);
 
     names.forEach(function (col){
-      console.log(col.name, "hdfkd");
+      console.log(col.name);
     });
   });
 
@@ -54,8 +54,8 @@ var OOP = new Course({
   cost: 481
 });
 
- 
-Course.find({title  : OOP.title,credit:OOP.credit}, function(err, course)
+
+Course.find({title: OOP.title,credit:OOP.credit}, function(err, course)
   {
    if (err)
    {
@@ -71,10 +71,25 @@ Course.find({title  : OOP.title,credit:OOP.credit}, function(err, course)
 
 
 
+var commonFee = new CommonFees({
+  tution : 160.58 ,
+  technology : 9.75,
+  MSCSA : 0.35,
+  studentLife : 4.32,
+  athletic : 1.14 ,
+  parking : 4.45
+});
 
-
-
-
-
-
-
+CommonFees.find({tution: commonFee.tution,studentLife:commonFee.studentLife}, function(err, fee)
+  {
+   if (err)
+   {
+     console.log(err);
+   }else{
+     if (fee.length == 0){
+       commonFee.save();
+     }else {
+       commonFee._id = fee._id;
+     }
+   }
+});
