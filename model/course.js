@@ -1,8 +1,8 @@
 let mongoose = require('mongoose');
 
 var CourseSchema = new mongoose.Schema({
-  title: String,
-  id: { // Check with team
+  title: String, 
+  courseID: { // Check with team
     schoolID: String,
     stateID: String,
   },
