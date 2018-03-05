@@ -1,0 +1,35 @@
+
+'use strict';
+
+let mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var FacultyStaffSchema = new Schema({
+
+
+  
+  person: {type: Schema.Types.ObjectId, ref : 'Person'},
+	office: String,
+
+  coursesTaught: {
+    courses: [{type: Schema.Types.ObjectId, ref : 'Course'}],
+    anyCourses: [{type: Schema.Types.ObjectId, ref : 'Course'}]
+  },
+
+
+  officeHours: [{
+    day: {
+      name: String,
+      time: {
+        Start: Number,
+        End: Number,
+      },
+    }
+  }],
+
+  phoneNumber: Number,
+  email: String,
+
+});
+
+module.exports = mongoose.model('Faculty', FacultyStaffSchema);

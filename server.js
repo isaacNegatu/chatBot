@@ -5,14 +5,15 @@
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
+let mongoose = require('mongoose');
 
-// Create a simple connection to the MONGODB database
-// to store messages.
-let monk = require('monk');
+var db = 'mongodb://Isaac:123456@ds046357.mlab.com:46357/chatbotdb';
 
-let db = monk(process.env.MONGODB_URI);
+mongoose.connect(db);
 
-let messages = db.get('Colleges');
+mongoose.connection.on('open', function (){
+  console.log("connected to mongo successfully");
+});
 
 
 
@@ -25,7 +26,7 @@ app.use(bodyParser.json());
 app.post("/action", function (req, res) {
   
   
-  messages.insert(req.body.result);
+  //messages.insert(req.body.result);
   
   // Save message in database
   actionHandler(req, res);
