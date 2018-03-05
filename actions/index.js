@@ -1,18 +1,21 @@
 let testHandler = require('./test');
 let addressHandler = require("./address");
 
+let courseHandler = require("./course");
+let feesHandler = require("./fees");
+
 
 
 module.exports = function(req, res) {
   let action = req.body.result.action;
   
   // Test actions:
-  if (action.startsWith('input')) {
-    testHandler(req, res);
+  if (action.startsWith('course')) {
+    courseHandler(req, res);
   }
   
-  if(action.startsWith('address')){
-    addressHandler(req, res);
+  if(action.startsWith('fees')){
+   feesHandler(req, res);
   }
   
   // Other actions:
