@@ -15,7 +15,7 @@ var CourseSchema = new mongoose.Schema({
     open: Boolean,
     size: Number,
     enrolled: Number,
-    remainingSeats: Number,
+    remainingSeats: Number
   },
   schedule: {  /// Days/Hours check with team
     days: String,
