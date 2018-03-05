@@ -12,10 +12,6 @@ mongoose.connection.on('open', function (){
 }).then(function (){
   mongoose.connection.db.listCollections().toArray(function(err, names){
     if (err) console.log(err);
-
-    names.forEach(function (col){
-      console.log(col.name);
-    });
   });
 
 });
