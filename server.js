@@ -54,3 +54,19 @@ app.post("/action", function (req, res) {
 let listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+
+// dialog flow handling test
+app.post("/df-request", function (req, res) {
+  
+  
+  
+  
+  
+});
+
+
+
+
+
+
