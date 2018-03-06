@@ -15,8 +15,18 @@ var admissionsschema = new Schema ({
     }],
     
     afterAcceptance: {
-      D
+      Description: String,
+      // More information regarding what is next
+      // How to get involved...
     },
+    
+    stepsToApply: String, // <== Description or maybe add more
+    
+    contactInformation: {
+      
+      phone: String,
+      
+    }
   },
   
   
