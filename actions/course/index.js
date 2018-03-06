@@ -25,17 +25,24 @@ mongoose.connection.on('open', function (){
 
 module.exports = function(req, res) {
   let action = req.body.result.action;
+  let reply = "";
   
-  let reply = {
-    'speech': `A default response`
-  };
+  let actionArray = action.split('.');
+  let courseName = actionArray[1];
   
-  if (action.startsWith('course.name')) {
-    reply = {
-      'speech': `Hello world!`
-    };
-  }
   
-  res.status(200).json(reply);
+  if (action.startsWith('course')) {
+    Course.find({title: courseName}, function(err, course)
+      {
+       if (err)
+       {
+         console.log(err);
+       }else{
+         reply = "yes it exits";
+       }
+    });
+    
+    res.status(200).json(reply);
+  } 
 }
 

@@ -59,9 +59,9 @@ let colinTest = require('./colinTest');
 
 // dialog flow handling test - Colin Roskos
 app.post("/df-request", function (req, res) {
-  console.log("in colin test");
+  console.log("in colin test...");
   colinTest(req, res);
-  
+  console.log("end colin test");
 });
 
 

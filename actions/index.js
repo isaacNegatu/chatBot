@@ -11,7 +11,7 @@ module.exports = function(req, res) {
   
   // Test actions:
   if (action.startsWith('course')) {
-    addressHandler(req, res);
+    courseHandler(req, res);
   }
   
   if(action.startsWith('input')){
