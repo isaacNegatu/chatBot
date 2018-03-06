@@ -4,7 +4,7 @@ var Course = require("../../model/course");
 var CommonFees = require("../../model/commonFees");
 
 
-var db = 'mongodb://Isaac:123456@ds046357.mlab.com:46357/chatbotdb';
+var db = process.env.MONGODB_URI;
 
 mongoose.connect(db);
 

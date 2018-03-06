@@ -7,7 +7,9 @@ let Schema = mongoose.Schema;
 var financialAidSchema = new Schema({
   _id: Schema.Types.ObjectId,
   
-
+  fasfaCode: Number,
+  description: String,
+  
 });
 
 
