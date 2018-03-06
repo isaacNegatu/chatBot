@@ -15,7 +15,7 @@ var DifferentialFeesSchema = new Schema ({
   prostheticClinicalApplication : Number,
   visualCommunicaitonTechnologies : Number,
 
-  courses : [{type : Schema.Types.ObjectId, ref : 'Courses'}];
+  courses : [{type : Schema.Types.ObjectId, ref : 'Courses'}],
 
   application : Number
 
