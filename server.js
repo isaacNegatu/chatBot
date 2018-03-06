@@ -26,7 +26,7 @@ mongoose.connection.on('open', function (){
     if (err) console.log(err);
 
     names.forEach(function (col){
-      console.log(col.name);
+      //console.log(col.name);
     });
   });
 

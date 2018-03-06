@@ -14,7 +14,7 @@ mongoose.connection.on('open', function (){
     if (err) console.log(err);
 
     names.forEach(function (col){
-      console.log(col.name);
+      //console.log(col.name);
     });
   });
 
@@ -30,19 +30,31 @@ module.exports = function(req, res) {
   // console.log(req.body.result);
   var course = req.body.result.parameters.courses;
   console.log(course);
-  Course.find({subject: course}, function(err, course)
+  
+  
+  function respond(response){
+    console.log('3');
+    res.status(200).json(response);
+  }
+  
+  function searchDB(course, callback){
+    console.log('1');
+    Course.find({subject: course}, function(err, course)
       {
        if (err)
        {
          console.log(err);
          
        }else{
+         console.log('2');
          reply = "yes it exits";
-         console.log(reply);
-         res.status(200).json(reply);
        }
   
     });
+    console.log('wait');
+    callback(reply);
+  }
   
+  searchDB(course, respond);
   
 }
