@@ -1,15 +1,24 @@
-
 'use strict'
 
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 
-var Libraryschema = new Schema ({
 
+//Notes:
+/**
+- Meal Plan / Prices
+- More than one caferteria location
+- Restraunts on campus Ex: Starbucks, Chick-fil-a
+
+**/
+var cafeteriaschema = new Schema ({
+
+  cafeteriaName: String,
+    
   hours: {
     monday: {
-      open: String,
+      open: String, // <=== Change the number?
       close: String
     },
     tuesday: {
@@ -33,18 +42,16 @@ var Libraryschema = new Schema ({
       close: String
     }
   },
-  
+
     address: {
     line1: String,
     line2: String,
     city: String,
     state: String,
     zip: String,
-  },
-  
-  //Study Room reservations
+  },  
   
 });
 
 
-module.exports = mongoose.model('Library', Libraryschema);
+module.exports = mongoose.model('cafeteria', cafeteriaschema);

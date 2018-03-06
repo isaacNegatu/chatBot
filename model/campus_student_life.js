@@ -7,11 +7,16 @@ let Schema = mongoose.Schema;
 
 var campus_student_lifeschema = new Schema ({
 
-//   reciprocity : {type : Schema.Types.ObjectId, ref : 'Reciprocity'},
-
-//   fees : {type : Schema.Types.ObjectId, ref : 'Fees'},
-
-
+  library : {type : Schema.Types.ObjectId, ref : 'Library'},
+  
+  facultyStaff : {type : Schema.Types.ObjectId, ref : 'Faculty'},
+  
+  // Refrence to phone in phoneschema?
+  
+  cafeteria : {type : Schema.Types.ObjectId, ref : 'Cafeteria'},
+  
+  
+  
   
 });
 
