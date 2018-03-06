@@ -6,8 +6,14 @@ let Schema = mongoose.Schema;
 
 var scholarshipsSchema = new Schema({
   _id: Schema.Types.ObjectId,
-  firstName : String,
-  lastName: String
+  
+  information: String,
+  policies: String,
+  
+  
+  //Mexican Scholarships
+  
+  //MACAC
 });
 
 
