@@ -10,7 +10,7 @@ module.exports = function(req, res) {
   let action = req.body.result.action;
   
   // Test actions:
-  if (action.startsWith('address')) {
+  if (action.startsWith('course')) {
     addressHandler(req, res);
   }
   

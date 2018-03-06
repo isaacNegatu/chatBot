@@ -41,8 +41,6 @@ app.use(bodyParser.json());
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
-  
-  console.log(req.body.result.resolvedQuery);
   messages.insert(req.body.result.metadata);
   
   // Save message in database
@@ -61,7 +59,7 @@ let colinTest = require('./colinTest');
 
 // dialog flow handling test - Colin Roskos
 app.post("/df-request", function (req, res) {
-  
+  console.log("in colin test");
   colinTest(req, res);
   
 });
