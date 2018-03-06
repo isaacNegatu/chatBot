@@ -7,6 +7,8 @@ let Schema = mongoose.Schema;
 
 var clubschema = new Schema ({
 
+  _id: Schema.Types.ObjectId,
+  
   clubName: String,
   description: String,
   meetingTimes: [{
