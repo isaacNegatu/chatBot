@@ -28,11 +28,14 @@ module.exports = function(req, res) {
   let reply = "";
   
   let actionArray = action.split('.');
-  let courseName = actionArray[1];
-  
-  
+  let courseName = actionArray[1].split('-');
+  let actualCName = "";
+  courseName.forEach(function (c){
+    actualCName += c;
+  });
+
   if (action.startsWith('course')) {
-    Course.find({title: courseName}, function(err, course)
+    Course.find({title: actualCName}, function(err, course)
       {
        if (err)
        {
