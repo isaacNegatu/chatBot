@@ -7,7 +7,7 @@ let Schema = mongoose.Schema;
 
 var fitnesscenterschema = new Schema ({
 
-  
+  // equipment:
   
   hours: {
     monday: {
