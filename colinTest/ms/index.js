@@ -25,22 +25,34 @@ mongoose.connection.on('open', function (){
 
 
 function searchDBforCourse(course){
-  
+  // console.log("here", course);
+  var reply = "";
+   
+  Course.find({subject: course}, function(err, course)
+      {
+       if (err)
+       {
+         console.log(err);
+       }else{
+         reply = "yes it exits";
+         console.log(course);
+       }
+
+    });
+   
+  console.log(reply, "ldkjfa");
 }
+
 
 
 module.exports = function(req, res) {
   let action = req.body.result.action;
   
   // console.log(req.body);
-  
   var actionCommand = action.split('.');
   
   if (actionCommand[1] == "program" && actionCommand[2] == "exist"){
     console.log(req.body.result.parameters);
-    searchDBforCourse(req.body.result.parameters.courses); 
+    searchDBforCourse(req.body.result.parameters.courses);
   }
-  //console.log(req.body);
-  //console.log(req.body.result.parameters);
-  // Other actions:
 }
