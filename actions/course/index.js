@@ -25,15 +25,23 @@ mongoose.connection.on('open', function (){
 
 module.exports = async function(req, res) {
   let action = req.body.result.action;
-  let reply = "";
+  let reply = {};
+  
+  var courses = req.body.result.parameters.courses;
+  console.log(courses);
   
   let actionArray = action.split('.');
  
-  let course = await Course.find({subject: actionArray[1]});
+  let course = await Course.find({subject: courses}, function (err, c){
+    if (c.length ==0){
+      reply = { 'speech' : `Yes Indeed`};
+    console.log("hi");
+    }
+      
+    
+  });
   
-  if(course){
-    reply = "yes iti ";
-  }
+  
   
   // Course.find({subject: actionArray[1]}, function(err, course)
   //     {

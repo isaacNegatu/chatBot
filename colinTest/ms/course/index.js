@@ -21,11 +21,31 @@ mongoose.connection.on('open', function (){
 });
 
 
-
+var queryDB = function(course){
+  return new Promise(function (resolve, reject) {
+    Course.find({subject: course}, function(err, course)
+      {
+       if (err)
+       {
+         console.log(err);
+         
+       }else{
+         console.log('2');
+         // reply = "yes it exits";
+       }
+    });
+  });
+}
 
 
 
 module.exports = function(req, res) {
+  
+  
+  
+  
+  
+  
   var reply = "";
   // console.log(req.body.result);
   var course = req.body.result.parameters.courses;
@@ -37,22 +57,12 @@ module.exports = function(req, res) {
     res.status(200).json(response);
   }
   
-  function searchDB(course, res, callback){
-    console.log('1');
-    Course.find({subject: course}, function(err, course)
-      {
-       if (err)
-       {
-         console.log(err);
-         
-       }else{
-         console.log('2');
-         reply = "yes it exits";
-         callback(reply, res);
-       }
-    });
-  }
+//   function searchDB(course, res, callback){
+//     console.log('1');
+    
+//     });
+//   }
   
-  searchDB(course, respond);
+  // searchDB(course, respond);
   
 }
