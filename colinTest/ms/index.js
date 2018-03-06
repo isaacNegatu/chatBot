@@ -2,17 +2,10 @@
 
 
 
-// module.exports = function(req, res) {
-//   let action = req.body.result.action;
+module.exports = function(req, res) {
+  let action = req.body.result.action;
   
-//   // Test actions:
-//   if (action.startsWith('course')) {
-//     courseHandler(req, res);
-//   }
-  
-//   if(action.startsWith('fees')){
-//    feesHandler(req, res);
-//   }
-  
-//   // Other actions:
-// }
+  //console.log(req.body);
+  console.log(req.body.result.parameters);
+  // Other actions:
+}
