@@ -15,7 +15,7 @@ var campus_student_lifeschema = new Schema ({
   
   cafeteria : {type : Schema.Types.ObjectId, ref : 'Cafeteria'},
   
-  
+  fitnessCenter : {type : Schema.Types.ObjectId, ref : 'fitnessCenter'},
   
   
 });

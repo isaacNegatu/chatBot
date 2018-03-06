@@ -5,14 +5,45 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 
-var fitnessCenterchema = new Schema ({
+var fitnesscenterschema = new Schema ({
 
-  reciprocity : {type : Schema.Types.ObjectId, ref : 'Reciprocity'},
-
-  fees : {type : Schema.Types.ObjectId, ref : 'Fees'},
-
-  differentialTution : String      //?????
+  
+  
+  hours: {
+    monday: {
+      open: String,
+      close: String
+    },
+    tuesday: {
+      open: String,
+      close: String
+    },
+    wednesday: {
+      open: String,
+      close: String
+    },
+    thursday: {
+      open: String,
+      close: String
+    },
+    saturday: {
+      open: String,
+      close: String
+    },
+    sunday: {
+      open: String,
+      close: String
+    }
+  },
+  
+    address: {
+    line1: String,
+    line2: String,
+    city: String,
+    state: String,
+    zip: String,
+  },
 });
 
 
-module.exports = mongoose.model('TRAF', TRAFschema);
+module.exports = mongoose.model('fitnessCenter', fitnesscenterschema);
