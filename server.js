@@ -59,9 +59,7 @@ let listener = app.listen(process.env.PORT, function () {
 // dialog flow handling test
 app.post("/df-request", function (req, res) {
   
-  
-  
-  
+  console.log("inside request");
   
 });
 
