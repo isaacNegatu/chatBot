@@ -35,7 +35,6 @@ module.exports = async function(req, res) {
   await Course.find({subject: courses}, function (err, c){
     if (c.length !=0){
       reply = { 'speech' : `Yes Indeed`};
-      console.log("hi");
     }else{
       reply = {'speech' : `no we do not!`};
     }
