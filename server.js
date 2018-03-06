@@ -56,11 +56,13 @@ let listener = app.listen(process.env.PORT, function () {
 });
 
 
+
+let colinTest = require('./colinTest');
+
 // dialog flow handling test - Colin Roskos
 app.post("/df-request", function (req, res) {
   
-  var action = req.body.result.action.split('.');
-  //req = appHangle(action, req.body);
+  colinTest(req, res);
   
 });
 
