@@ -27,19 +27,21 @@ module.exports = async function(req, res) {
   let action = req.body.result.action;
   let reply = {};
   
-  var courses = req.body.result.parameters.courses;
+  var courses = req.body.result.parameters.courses.toUpperCase();
   console.log(courses);
   
   let actionArray = action.split('.');
  
-  let course = await Course.find({subject: courses}, function (err, c){
-    if (c.length ==0){
+  await Course.find({subject: courses}, function (err, c){
+    if (c.length !=0){
       reply = { 'speech' : `Yes Indeed`};
-    console.log("hi");
+      console.log("hi");
+    }else{
+      reply = {'speech' : `no we do not!`};
     }
-      
-    
   });
+  
+
   
   
   
