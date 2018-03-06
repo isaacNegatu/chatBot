@@ -23,24 +23,28 @@ mongoose.connection.on('open', function (){
 
 
 
-module.exports = function(req, res) {
+module.exports = async function(req, res) {
   let action = req.body.result.action;
   let reply = "";
   
   let actionArray = action.split('.');
  
-  if (action.startsWith('subject')) {
-    Course.find({subject: actionArray[1]}, function(err, course)
-      {
-       if (err)
-       {
-         console.log(err);
-       }else{
-         reply = "yes it exits";
-       }
-    });
+  let course = await Course.find({subject: actionArray[1]});
+  
+  if(course){
+    reply = "yes iti ";
+  }
+  
+  // Course.find({subject: actionArray[1]}, function(err, course)
+  //     {
+  //      if (err)
+  //      {
+  //        console.log(err);
+  //      }else{
+  //        reply = "yes it exits";
+  //      }
+  //   });
     
     res.status(200).json(reply);
-  } 
 }
 

@@ -32,12 +32,12 @@ module.exports = function(req, res) {
   console.log(course);
   
   
-  function respond(response){
+  function respond(response, res){
     console.log('3');
     res.status(200).json(response);
   }
   
-  function searchDB(course, callback){
+  function searchDB(course, res, callback){
     console.log('1');
     Course.find({subject: course}, function(err, course)
       {
@@ -48,11 +48,9 @@ module.exports = function(req, res) {
        }else{
          console.log('2');
          reply = "yes it exits";
+         callback(reply, res);
        }
-  
     });
-    console.log('wait');
-    callback(reply);
   }
   
   searchDB(course, respond);
