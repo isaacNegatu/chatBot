@@ -7,7 +7,7 @@ let specificCollege = require('./specificCollege');
 module.exports = function(req, res) {
   let action = req.body.result.action;
   
-  // Test actions:
+  // Test handling:
   if (action.startsWith('ms')) {
     minnesotaState(req, res);
   }
@@ -16,5 +16,4 @@ module.exports = function(req, res) {
    specificCollege(req, res);
   }
   
-  // Other actions:
 }

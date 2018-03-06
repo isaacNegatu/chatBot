@@ -5,26 +5,26 @@ var CourseSchema = new mongoose.Schema({
   college: String,
   title: String, 
   courseID: Number,
-  credits: Number,
+  credits: String,
   subject: String, // Math, Science, etc
-  section: Number,
+  section: String,
   description: String,
   location: String,
   room: String,
   seatAvailability: {
     open: Boolean,
-    size: Number,
-    enrolled: Number,
-    remainingSeats: Number
+    size: String,
+    enrolled: String,
+    remainingSeats: String
   },
   schedule: {  /// Days/Hours check with team
     days: String,
     time: String
   },
   costs: {
-    fees: Number,
-    costResident: Number,
-    costNonResident: Number
+    fees: String,
+    costResident: String,
+    costNonResident: String
   }
 });
 
