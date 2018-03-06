@@ -7,7 +7,6 @@ let Schema = mongoose.Schema;
 
 var admissionsschema = new Schema ({
 
-  // First Time Student
   firstTimeStudent: {
     orientationTimes: [{
       date: String,
@@ -99,6 +98,11 @@ var admissionsschema = new Schema ({
       // How to get involved...
     },
     
+    academicRenewal : { 
+      renewalProcess: String,
+      creditExpiration: String,
+    },      
+    
     stepsToApply: {
       description: String,
       sumbittingTranscripts: String,
@@ -111,11 +115,25 @@ var admissionsschema = new Schema ({
       //General Email
     }
   },
-  // Returning Student
   
-  // Highschool Options
-  
-  // Non-Degree
+  highSchoolOptions: {
+    careerAndTechnicalEducationCredit: {
+      requirments: String,
+      procedures: String,
+      praticipatingHighSchools: [{schoolName: String},]      
+    },
+    
+    PSEO: {
+      stepsToApply: String,
+      documents: [{
+        documentName: String,
+        documentLink: String,
+      }],
+      parentResources: [{
+        resource: String,
+      }],
+    },
+  },
   
 });
 
