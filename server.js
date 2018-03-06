@@ -60,7 +60,10 @@ let listener = app.listen(process.env.PORT, function () {
 app.post("/df-request", function (req, res) {
   
   console.log("inside request");
-  console.log(req);
+  console.log(req.body);
+  var action = req.body.result.action.split('.');
+  console.log(action);
+  //req = appHangle(action, req.body);
   
 });
 
