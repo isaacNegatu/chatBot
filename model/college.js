@@ -72,11 +72,7 @@ var CollegeSchema = new Schema({
     departments: [{type : Schema.Types.ObjectID, ref : "Department"}]
   },
 
-  admissions: {
-    none: {
-      //empty...
-    },
-  },
+  admissions: {type : Schema.Types.ObjectID, ref : "admissions"},
 
   //May be changed \/
   bookstore: {
