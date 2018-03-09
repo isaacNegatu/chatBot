@@ -32,7 +32,7 @@ mongoose.connection
         testStaff.find({name: doc.instructor}, function(err, staff){
           if (err) console.log(err);
     
-          console.log(staff.name, "d;kljfa");
+          console.log(staff.name);
     
           if(staff.name != undefined){
             flag = false;
