@@ -30,7 +30,7 @@ module.exports = async function(req, res) {
   
   
   await Course.findOne({subject: course, college: college}, function (err, c){
-    if (c.length !=0){
+    if (c != null){
       var str = `Yes, ` + college + ` offers ` + course + ` classes`;
       reply = { 'speech' : str};
     }else{
@@ -38,20 +38,6 @@ module.exports = async function(req, res) {
       reply = {'speech' : str};
     }
   });
-  
-
-  
-  
-  
-  // Course.find({subject: actionArray[1]}, function(err, course)
-  //     {
-  //      if (err)
-  //      {
-  //        console.log(err);
-  //      }else{
-  //        reply = "yes it exits";
-  //      }
-  //   });
     
     res.status(200).json(reply);
 }
