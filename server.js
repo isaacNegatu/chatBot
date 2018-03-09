@@ -42,7 +42,7 @@ app.use(bodyParser.json());
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   messages.insert(req.body.result.metadata);
-  
+
   // Save message in database
   actionHandler(req, res);
   

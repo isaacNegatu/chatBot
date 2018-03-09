@@ -25,16 +25,17 @@ module.exports = async function(req, res) {
   let action = req.body.result.action;
   let reply = {};
   
-  var course = req.body.result.parameters.course.toUpperCase();
+  var course = req.body.result.parameters.courses.toUpperCase();
   var college = req.body.result.parameters.College;
   
   
   await Course.findOne({subject: course, college: college}, function (err, c){
     if (c.length !=0){
-      var str = `Yes, ` + college + ` offers ` + course + " classes";
+      var str = `Yes, ` + college + ` offers ` + course + ` classes`;
       reply = { 'speech' : str};
     }else{
-      reply = {'speech' : `no we do not!`};
+      var str = `No, ` + college + ` does not offer ` + course + ` classes`;
+      reply = {'speech' : str};
     }
   });
   
