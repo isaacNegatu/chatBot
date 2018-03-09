@@ -28,8 +28,25 @@ module.exports = async function(req, res) {
   var course = req.body.result.parameters.courses.toUpperCase();
   var college = req.body.result.parameters.College;
   
+  var flag = false;
+  var collegeList = ``;
   
-  await Course.findOne({subject: course, college: college}, function (err, c){
+  if(course == ""){
+    
+    await Course.find({subject: course}, function (err, li){
+      
+      li.forEach(function (mydoc){
+        collegeList.push(mydoc.
+        
+      });
+      
+    });
+    
+    
+    
+  }
+  else{
+    await Course.findOne({subject: course, college: college}, function (err, c){
     if (c != null){
       var str = `Yes, ` + college + ` offers ` + course + ` classes`;
       reply = { 'speech' : str};
@@ -38,6 +55,9 @@ module.exports = async function(req, res) {
       reply = {'speech' : str};
     }
   });
+    
+  }
+  
     
     res.status(200).json(reply);
 }
