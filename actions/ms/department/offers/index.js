@@ -29,21 +29,23 @@ module.exports = async function(req, res) {
   var college = req.body.result.parameters.College;
   
   var flag = false;
-  var collegeList = ``;
+  var collegeList = [];
   
-  if(course == ""){
+  if(college == ""){
     
     await Course.find({subject: course}, function (err, li){
       
+      console.log(li);
       li.forEach(function (mydoc){
-        collegeList.push(mydoc.
         
+        collegeList.push(mydoc.college);
       });
-      
     });
     
-    
-    
+    reply = `These colleges offer ` + course + ` classes: \n`;
+    collegeList.forEach(function (c){
+      reply.concat(c + `\n`);
+    });
   }
   else{
     await Course.findOne({subject: course, college: college}, function (err, c){
@@ -57,7 +59,7 @@ module.exports = async function(req, res) {
   });
     
   }
-  
+   
     
     res.status(200).json(reply);
 }
