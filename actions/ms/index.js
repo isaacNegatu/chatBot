@@ -7,6 +7,8 @@ module.exports = function(req, res) {
   if (action.startsWith('test.ms.departments')) {
     departmentHandler(req,res);
   }else if (action.startsWith('test.ms.faculty')){
+    console.log("got to ms");
+
     facultyHandler(req,res);
   }
   

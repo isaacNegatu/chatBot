@@ -22,9 +22,9 @@ mongoose.connection.on('open', function (){
 
 
 module.exports = async function (req, res){
-  let reply = {'speec' : "The teacher doesn't exist"};
+  let reply = {'speech' : "The teacher doesn't exist"};
   
-  console.log("got here");
+  console.log("got to courses");
   var course = req.body.result.parameters.courses.toUpperCase();
   var fName = req.body.result.parameters.givenName;
   var lName = req.body.result.parameters.lastName;
