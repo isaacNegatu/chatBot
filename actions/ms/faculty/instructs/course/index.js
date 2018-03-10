@@ -24,10 +24,18 @@ mongoose.connection.on('open', function (){
 module.exports = async function (req, res){
   let reply = {'speech' : "The teacher doesn't exist"};
   
+  console.log(req.body.result.parameters);
+  
   console.log("got to courses");
   var course = req.body.result.parameters.courses.toUpperCase();
-  var fName = req.body.result.parameters.givenName;
-  var lName = req.body.result.parameters.lastName;
+  
+  var fName = req.body.result.parameters.attributes["given-name"];
+  
+  console.log(fName);
+  var lName = req.body.result.parameters.attributes["last-name"];
+  
+  
+
   
   var fullName = lName + ", " + fName;
   
@@ -39,10 +47,10 @@ module.exports = async function (req, res){
             exec().
             then(c => {
               console.log(c);
-              c.forEach(function (d){
-                console.log(c.title);
-                str += c.title + "\n";
-              });
+              // c.forEach(function (d){
+              //   console.log(c.title);
+              //   str += c.title + "\n";
+              // });
             })
             .then(function (){
               reply = {'speech' : str};
