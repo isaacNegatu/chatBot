@@ -19,8 +19,6 @@ mongoose.connection.on('open', function (){
 
 });
 
-
-
 module.exports = async function(req, res) {
   let action = req.body.result.action;
   let reply = {};
@@ -38,15 +36,21 @@ module.exports = async function(req, res) {
       
       
       li.forEach(function (mydoc){
-        //console.log(mydoc.college);
-        collegeList.push(mydoc.college);
+        
+        var cl = collegeList.find(function (c){
+          return mydoc.college == c;
+        });
+        
+        if(cl == undefined){
+          collegeList.push(mydoc.college);
+        }
       });
     }).then(function (){
-      str = "These colleges offer " + course + " classes: ";
+      str = "These colleges offer " + course + " classes: \n";
     
       collegeList.forEach(function (c){
         console.log(c);
-        str += c;
+        str += c + "\n";
       });
       
      
