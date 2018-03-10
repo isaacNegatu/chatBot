@@ -29,7 +29,7 @@ module.exports = async function (req, res){
   console.log("got to courses");
   var course = req.body.result.parameters.courses.toUpperCase();
   
-  var fName = req.body.result.parameters.attributes["given-name"];
+  var fName = req.body.result.parameters["given-name"];
   
   console.log(fName);
   var lName = req.body.result.parameters.attributes["last-name"];
