@@ -25,6 +25,17 @@ module.exports = async function (req, res){
   let reply = {};
   
   var course = req.body.result.parameters.courses.toUpperCase();
+  var fName = req.body.result.parameters.givenName;
+  var lName = req.body.result.parameters.lastName;
+  
+  var fullName = lName + ", " + fName;
+  
+  if (course == ""){
+    var str = "";
+    
+    await Faculty.findOne({name: fullName}).
+      
+  }
   
   
   
