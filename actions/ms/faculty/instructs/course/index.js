@@ -34,8 +34,40 @@ module.exports = async function (req, res){
     var str = "";
     
     await Faculty.findOne({name: fullName}).
+            populate("coursesTaught").
+            exec().
+            then(c => {
+              console.log(c);
+              c.forEach(function (d){
+                console.log(c.title);
+                str += c.title + "\n";
+              });
+            })
+            .catch(err => console.log(err));
+    }else{
       
-  }
+      var str = "";
+      
+      await Faculty.findOne({name: fullName}).
+              populate("coursesTaught").
+              exec().
+              then(c => {
+                
+                c.forEach(function (d){
+                  if(d.title == course){
+                    str = "Yes, " + fullName + " teaches " + course;
+                    
+                  }
+                
+                });
+        
+        
+              }).
+              catch(err => console.log(err));
+      
+      
+      
+    }
   
   
   
