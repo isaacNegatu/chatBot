@@ -31,7 +31,7 @@ module.exports = async function (req, res){
   var fullName = lName + ", " + fName;
   
   if (course == ""){
-    var str = "";
+    var str = fullName + "teaches : ";
     
     await Faculty.findOne({name: fullName}).
             populate("coursesTaught").
@@ -43,6 +43,10 @@ module.exports = async function (req, res){
                 str += c.title + "\n";
               });
             })
+            .then(function (){
+              reply = {'speech' : str};
+      
+            })
             .catch(err => console.log(err));
     }else{
       
@@ -52,24 +56,24 @@ module.exports = async function (req, res){
               populate("coursesTaught").
               exec().
               then(c => {
-                
                 c.forEach(function (d){
                   if(d.title == course){
                     str = "Yes, " + fullName + " teaches " + course;
-                    
                   }
-                
                 });
-        
-        
+              }).
+              then(function (){
+                if (str == ""){
+                 var noTeach = "No " + fullName + " does not teach " + course; 
+                 reply = {'speech' : noTeach};
+                }else{
+                 reply = {'speech' : str};
+                }
               }).
               catch(err => console.log(err));
-      
-      
-      
-    }
+       }
   
   
-  
-  
+        res.status(200).json(reply);
+
 }
