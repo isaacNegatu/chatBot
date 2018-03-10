@@ -21,4 +21,12 @@ mongoose.connection.on('open', function (){
 });
 
 
-module.
+module.exports = async function (req, res){
+  let reply = {};
+  
+  var course = req.body.result.parameters.courses.toUpperCase();
+  
+  
+  
+  
+}
