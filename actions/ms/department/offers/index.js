@@ -32,20 +32,31 @@ module.exports = async function(req, res) {
   var collegeList = [];
   
   if(college == ""){
+    var str = "";
     
     await Course.find({subject: course}, function (err, li){
       
-      console.log(li);
+      
       li.forEach(function (mydoc){
-        
+        //console.log(mydoc.college);
         collegeList.push(mydoc.college);
       });
+    }).then(function (){
+      str = "These colleges offer " + course + " classes: ";
+    
+      collegeList.forEach(function (c){
+        console.log(c);
+        str += c;
+      });
+      
+     
+      
+    }).then(function (){
+      console.log(str);
+      reply = {"speech" : str};
     });
     
-    reply = `These colleges offer ` + course + ` classes: \n`;
-    collegeList.forEach(function (c){
-      reply.concat(c + `\n`);
-    });
+    
   }
   else{
     await Course.findOne({subject: course, college: college}, function (err, c){
