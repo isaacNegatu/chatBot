@@ -32,8 +32,9 @@ module.exports = async function (req, res){
   var fName = req.body.result.parameters["given-name"];
   
   console.log(fName);
-  var lName = req.body.result.parameters.attributes["last-name"];
-  
+  var lName = req.body.result.parameters["last-name"];
+  console.log(lName);
+
   
 
   
@@ -47,10 +48,10 @@ module.exports = async function (req, res){
             exec().
             then(c => {
               console.log(c);
-              // c.forEach(function (d){
-              //   console.log(c.title);
-              //   str += c.title + "\n";
-              // });
+              c.coursesTaught.forEach(function (d){
+                console.log(c.title);
+                str += c.title + "\n";
+              });
             })
             .then(function (){
               reply = {'speech' : str};
@@ -65,11 +66,13 @@ module.exports = async function (req, res){
               populate("coursesTaught").
               exec().
               then(c => {
-                c.forEach(function (d){
-                  if(d.title == course){
+              if (c != null){
+                c.coursesTaught.forEach(function (d){
+                  if(d.subject == course){
                     str = "Yes, " + fullName + " teaches " + course;
                   }
                 });
+              } 
               }).
               then(function (){
                 if (str == ""){
