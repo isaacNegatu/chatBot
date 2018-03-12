@@ -57,8 +57,8 @@ module.exports = async function (req, res){
               courseList.forEach(function (co){
                 str += co + ", ";
               })
-              Y
-              reply = {'speech' : str};
+              var realStr = str.substr(0,str.length-2);
+              reply = {'speech' : realStr  + "."};
       
             })
             .catch(err => console.log(err));
