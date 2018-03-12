@@ -42,18 +42,28 @@ module.exports = async function (req, res){
   
   if (course == ""){
     var str = fullName + "teaches : ";
+    var courseList = [];
     
     await Faculty.findOne({name: fullName}).
             populate("coursesTaught").
             exec().
             then(c => {
-              console.log(c);
               c.coursesTaught.forEach(function (d){
-                console.log(c.title);
-                str += c.title + "\n";
+                let course = courseList.find(function (co){
+                  return co == d.title;
+                });
+                
+                if(!course){
+                  courseList.push(d.title);
+                }
+                console.log(d.title);
+                
               });
             })
             .then(function (){
+              courseList.forEach(function (co){
+                str += co + "\n";
+              })
               reply = {'speech' : str};
       
             })
