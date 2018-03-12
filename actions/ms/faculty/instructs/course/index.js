@@ -23,16 +23,16 @@ module.exports = async function (req, res){
   console.log(req.body.result.parameters);
   
   console.log("got to courses");
-  var course = req.body.result.parameters.courses.toUpperCase();
+  var course = req.body.result.parameters.courses;
   var fName = req.body.result.parameters["given-name"];
- 
+ console.log(course);
   var lName = req.body.result.parameters["last-name"];
 
   
 
   
   var fullName = lName + ", " + fName;
-  
+  console.log(fullName);
   if (course == ""){
     var str = fullName + " teaches : ";
     var courseList = [];
@@ -55,8 +55,9 @@ module.exports = async function (req, res){
             })
             .then(function (){
               courseList.forEach(function (co){
-                str += co + "\n\n";
+                str += co + ", ";
               })
+              Y
               reply = {'speech' : str};
       
             })
@@ -71,7 +72,7 @@ module.exports = async function (req, res){
               then(c => {
               if (c != null){
                 c.coursesTaught.forEach(function (d){
-                  if(d.course == course){
+                  if(d.title == course){
                     str = "Yes, " + fullName + " teaches " + course;
                   }
                 });
