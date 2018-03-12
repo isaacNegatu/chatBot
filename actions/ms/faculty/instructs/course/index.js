@@ -33,63 +33,77 @@ module.exports = async function (req, res){
   
   var fullName = lName + ", " + fName;
   console.log(fullName);
-  if (course == ""){
-    var str = fullName + " teaches : ";
-    var courseList = [];
+  if (lName.length !== 0  && fName.length !== 0){
     
-    await Faculty.findOne({name: fullName}).
-            populate("coursesTaught").
-            exec().
-            then(c => {
-              c.coursesTaught.forEach(function (d){
-                let course = courseList.find(function (co){
-                  return co == d.title;
-                });
-                
-                if(!course){
-                  courseList.push(d.title);
-                }
-                console.log(d.title);
-                
-              });
-            })
-            .then(function (){
-              courseList.forEach(function (co){
-                str += co + ", ";
-              })
-              var realStr = str.substr(0,str.length-2);
-              reply = {'speech' : realStr  + "."};
-      
-            })
-            .catch(err => console.log(err));
-    }else{
-      
-      var str = "";
-      
+    if (course == "" ){
+      var str = fullName + " teaches : ";
+      var courseList = [];
+
       await Faculty.findOne({name: fullName}).
               populate("coursesTaught").
               exec().
               then(c => {
-              if (c != null){
                 c.coursesTaught.forEach(function (d){
-                  if(d.title == course){
-                    str = "Yes, " + fullName + " teaches " + course;
+                  let course = courseList.find(function (co){
+                    return co == d.title;
+                  });
+
+                  if(!course){
+                    courseList.push(d.title);
                   }
+                  console.log(d.title);
+
                 });
-              } 
-              }).
-              then(function (){
-                if (str == ""){
-                 var noTeach = "No " + fullName + " does not teach " + course; 
-                 reply = {'speech' : noTeach};
-                }else{
-                 reply = {'speech' : str};
-                }
-              }).
-              catch(err => console.log(err));
-       }
+              })
+              .then(function (){
+                courseList.forEach(function (co){
+                  str += co + ", ";
+                })
+                var realStr = str.substr(0,str.length-2);
+                reply = {'speech' : realStr  + "."};
+
+              })
+              .catch(err => console.log(err));
+      }else{
+
+        var str = "";
+
+        await Faculty.findOne({name: fullName}).
+                populate("coursesTaught").
+                exec().
+                then(c => {
+                if (c != null){
+                  c.coursesTaught.forEach(function (d){
+                    if(d.title == course){
+                      str = "Yes, " + fullName + " teaches " + course;
+                    }
+                  });
+                } 
+                }).
+                then(function (){
+                  if (str == ""){
+                   var noTeach = "No " + fullName + " does not teach " + course; 
+                   reply = {'speech' : noTeach};
+                  }else{
+                   reply = {'speech' : str};
+                  }
+                }).
+                catch(err => console.log(err));
+         }
+  }
   
   
-        res.status(200).json(reply);
+        if (lName.length === 0 ){
+          reply = {"speech" : "Please provide the last name"}
+          res.status(200).json(reply);
+
+        }else if (fName.length === 0){
+          reply = {"speech" : "Please provide the first name"}
+          res.status(200).json(reply);
+
+        }else{
+            res.status(200).json(reply);
+        }
+  
 
 }
