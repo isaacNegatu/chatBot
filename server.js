@@ -7,6 +7,8 @@ let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 
+let connection = require("./connection");
+
 
 
 // Create a simple connection to the MONGODB database
@@ -15,7 +17,7 @@ let monk = require('monk');
 
 let db = monk(process.env.MONGODB_URI);
 
-let messages = db.get('questions');
+let messages = db.get('questions'); 
 
 mongoose.connect(process.env.MONGODB_URI);
 
