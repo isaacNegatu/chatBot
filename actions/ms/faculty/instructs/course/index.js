@@ -12,10 +12,6 @@ mongoose.connection.on('open', function (){
 }).then(function (){
   mongoose.connection.db.listCollections().toArray(function(err, names){
     if (err) console.log(err);
-
-    names.forEach(function (col){
-      console.log(col.name);
-    });
   });
 
 });
@@ -28,12 +24,9 @@ module.exports = async function (req, res){
   
   console.log("got to courses");
   var course = req.body.result.parameters.courses.toUpperCase();
-  console.log(course);
   var fName = req.body.result.parameters["given-name"];
-  
-  console.log(fName);
+ 
   var lName = req.body.result.parameters["last-name"];
-  console.log(lName);
 
   
 
@@ -41,7 +34,7 @@ module.exports = async function (req, res){
   var fullName = lName + ", " + fName;
   
   if (course == ""){
-    var str = fullName + "teaches : ";
+    var str = fullName + " teaches : ";
     var courseList = [];
     
     await Faculty.findOne({name: fullName}).
@@ -62,7 +55,7 @@ module.exports = async function (req, res){
             })
             .then(function (){
               courseList.forEach(function (co){
-                str += co + "\n";
+                str += co + "\n\n";
               })
               reply = {'speech' : str};
       
@@ -78,7 +71,7 @@ module.exports = async function (req, res){
               then(c => {
               if (c != null){
                 c.coursesTaught.forEach(function (d){
-                  if(d.subject == course){
+                  if(d.course == course){
                     str = "Yes, " + fullName + " teaches " + course;
                   }
                 });
