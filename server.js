@@ -7,9 +7,6 @@ let app = express();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 
-let connection = require("./connection");
-
-
 
 // Create a simple connection to the MONGODB database
 // to store messages.
@@ -17,7 +14,7 @@ let monk = require('monk');
 
 let db = monk(process.env.MONGODB_URI);
 
-let messages = db.get('questions'); 
+let messages = db.get('questions');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -43,7 +40,7 @@ app.use(bodyParser.json());
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
-  messages.insert(req.body.result.metadata);
+  messages.insert(req.body);
 
   // Save message in database
   actionHandler(req, res);
