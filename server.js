@@ -19,28 +19,17 @@ let actionHandler = require('./actions');
 // Use bodyParser to handle json
 app.use(bodyParser.json());
 
-function getClientIp(req) {
-  var ipAddress;
-  // The request may be forwarded from local web server.
-  var forwardedIpsStr = req.header('x-forwarded-for'); 
-  if (forwardedIpsStr) {
-    var forwardedIps = forwardedIpsStr.split(',');
-    ipAddress = forwardedIps[0];
-  }
-  if (!ipAddress) {
-    // If request was not forwarded
-    ipAddress = req.connection.remoteAddress;
-  }
-  return ipAddress;
-};
-
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
-  messages.insert({question: req.body.result.resolvedQuery});
-  var ip = getClientIp(req);
-  console.log(req.body
-             );
+  
+  if(req.body.originalRequest){
+   var id = req.body.originalRequest.data.user;
+   var actualId = id + "::" + req.body.originalRequest.timestamp; 
+   messages.insert({_id: actualId, question: req.body.result.resolvedQuery});
+  }else{
+   messages.insert({question: req.body.result.resolvedQuery});
+  }
   // Save message in database
   actionHandler(req, res);
   
