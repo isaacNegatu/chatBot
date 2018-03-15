@@ -39,7 +39,8 @@ function getClientIp(req) {
 app.post("/action", function (req, res) {
   messages.insert({question: req.body.result.resolvedQuery});
   var ip = getClientIp(req);
-  console.log(req.originalRequest.data);
+  console.log(req.body
+             );
   // Save message in database
   actionHandler(req, res);
   
