@@ -11,9 +11,9 @@ module.exports = async function (req, res){
   
   console.log("got to courses");
   var course = req.body.result.parameters.courses;
-  var fName = req.body.result.parameters["given-name"];
+  var fName = req.body.result.parameters.fName;
   console.log(course);
-  var lName = req.body.result.parameters["last-name"];
+  var lName = req.body.result.parameters.lName;
 
   
 
