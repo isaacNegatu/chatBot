@@ -23,10 +23,12 @@ app.use(bodyParser.json());
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
+  
   if(req.body.originalRequest){
    var id = req.body.originalRequest.data.user;
-   var actualId = id + "::" + req.body.originalRequest.timestamp; 
-   messages.insert({_id: actualId, question: req.body.result.resolvedQuery});
+   var cameFrom = req.body.originalRequest.source;
+   var question = cameFrom + "::" + id + "::" + req.body.result.resolvedQuery + "::" + ;
+   messages.insert({question: question});
   }else{
    messages.insert({question: req.body.result.resolvedQuery});
   }
