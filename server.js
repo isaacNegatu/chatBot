@@ -27,7 +27,7 @@ app.post("/action", function (req, res) {
   if(req.body.originalRequest){
    var id = req.body.originalRequest.data.user;
    var cameFrom = req.body.originalRequest.source;
-   var question = cameFrom + "::" + id + "::" + req.body.result.resolvedQuery + "::" + ;
+   var question = cameFrom + "::" + id + "::" + req.body.timestamp +  "::" + req.body.result.resolvedQuery;
    messages.insert({question: question});
   }else{
    messages.insert({question: req.body.result.resolvedQuery});
