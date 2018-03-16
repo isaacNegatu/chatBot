@@ -1,8 +1,5 @@
 let testHandler = require('./test');
-let addressHandler = require("./address");
-
 let courseHandler = require("./course");
-let feesHandler = require("./fees");
 
 let msHandler = require("./ms");
 

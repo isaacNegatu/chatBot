@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 var questionSchema = new Schema({
   platform: String,
   id_fromPlatorm: String,
-  timestamps: Date,
+  date: { type: Date, default: Date.now },
   question: String
 });
 
@@ -13,4 +13,4 @@ var questionSchema = new Schema({
 
 
 
-module.exports = mongoose.model('Question', questionSchema);
+module.exports = mongoose.model('PlatformQuestion', questionSchema);
