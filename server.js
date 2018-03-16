@@ -20,11 +20,7 @@ let actionHandler = require('./actions');
 app.use(bodyParser.json());
 
 
-function (req){
-  
-  
-  
-}
+
 
 
 // The API endpoint for the requests from Dialog Flow

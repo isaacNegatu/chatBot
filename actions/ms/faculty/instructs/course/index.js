@@ -20,7 +20,7 @@ module.exports = async function (req, res){
   
   var fullName = lName + ", " + fName;
   console.log(fullName);
-  if (lName.length !== 0  && fName.length !== 0){
+  if (lName.length !== 0  && fName.length !== 0 && lName !== '' ){
     
     if (course == "" ){
       var str = fullName + " teaches : ";
