@@ -10,13 +10,14 @@ module.exports = function (req){
   let getRequestInfo = function() {
       return new Promise(function(resolve, reject) {
         platform = req.body.originalRequest.source;
-        platform_id = req.body.originalRequest.data.user;
+        platform_id = req.body.originalRequest.user;
         question = req.body.result.resolvedQuery
       });
     };
   
   getRequestInfo()
   .then(function(){
+    console.log("got here");
     
     var newQuestion = new Question({
       platform: platform,
