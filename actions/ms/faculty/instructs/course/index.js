@@ -5,7 +5,7 @@ var Faculty = require("../../../../../model/facultyStaffTest");
 
 
 module.exports = async function (req, res){
-  let reply = {'speech' : "The teacher doesn't exist"};
+  let reply = {'speech' : "The teacher doesn't exist"};  
   
   console.log(req.body.result.parameters);
   
@@ -22,7 +22,7 @@ module.exports = async function (req, res){
   console.log(fullName);
   if (lName !== '' && fName !== '' ){
     
-    if (course == "" ){
+    if (course == "" || course == undefined){
       var str = fullName + " teaches : ";
       var courseList = [];
 
@@ -30,7 +30,8 @@ module.exports = async function (req, res){
               populate("coursesTaught").
               exec().
               then(c => {
-                c.coursesTaught.forEach(function (d){
+                 
+               c.coursesTaught.forEach(function (d){
                   let course = courseList.find(function (co){
                     return co == d.title;
                   });
@@ -55,6 +56,7 @@ module.exports = async function (req, res){
 
         var str = "";
 
+        
         await Faculty.findOne({name: fullName}).
                 populate("coursesTaught").
                 exec().
