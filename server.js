@@ -20,9 +20,17 @@ let actionHandler = require('./actions');
 app.use(bodyParser.json());
 
 
+function (req){
+  
+  
+  
+}
+
+
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
+  console.log(req.ip);
   
   if(req.body.originalRequest){
    var id = req.body.originalRequest.data.user;
@@ -36,6 +44,9 @@ app.post("/action", function (req, res) {
   actionHandler(req, res);
   
 });
+
+
+
 
 // listen for requests :)
 let listener = app.listen(process.env.PORT, function () {
