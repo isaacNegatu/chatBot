@@ -15,6 +15,7 @@ let db = monk(process.env.MONGODB_URI);
 let messages = db.get('questions');
 
 let actionHandler = require('./actions');
+let questionHandler = require('./question');
 
 // Use bodyParser to handle json
 app.use(bodyParser.json());
@@ -23,10 +24,11 @@ app.use(bodyParser.json());
 
 
 
+
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
-  console.log(req.ip);
+  questionHandler(req);
   
   if(req.body.originalRequest){
    var id = req.body.originalRequest.data.user;
