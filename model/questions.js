@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
 var questionSchema = new Schema({
   platform: String,
   id_fromPlatorm: String,
-  timestamps: { createdAt: 'created_at' },
+  timestamps: Date,
   question: String
 });
 
