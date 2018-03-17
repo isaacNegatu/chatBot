@@ -27,7 +27,11 @@ app.use(bodyParser.json());
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
-  console.log(new Date());
+  var td = function (){
+   return req.header; 
+  }
+  
+  console.log(td.ip);
   
   if(req.body.originalRequest){
    questionHandler(req);

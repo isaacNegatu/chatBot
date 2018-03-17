@@ -23,7 +23,7 @@ module.exports = function (req){
     
     var newQuestion = new Question({
       platform: platform,
-      id_fromPlatform: platform_id,
+      platform_id: platform_id,
       date : new Date(),
       question: question
     });

@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 
 var questionSchema = new Schema({
   platform: String,
-  id_fromPlatorm: String,
+  platform_id: String,
   date: { type: Date, default: Date.now },
   question: String
 });
