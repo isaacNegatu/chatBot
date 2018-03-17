@@ -6,22 +6,24 @@ var question = "";
 
 
 module.exports = function (req){ 
-  
+  console.log(req.body);
   let getRequestInfo = function() {
       return new Promise(function(resolve, reject) {
         platform = req.body.originalRequest.source;
-        platform_id = req.body.originalRequest.user;
-        question = req.body.result.resolvedQuery
+        platform_id = req.body.originalRequest.data.user;
+        question = req.body.result.resolvedQuery;
+        
+        resolve();
       });
     };
   
   getRequestInfo()
   .then(function(){
-    console.log("got here");
+    console.log(platform_id);
     
     var newQuestion = new Question({
       platform: platform,
-      id_fromPlatfrom: platform_id,
+      id_fromPlatform: platform_id,
       date : new Date(),
       question: question
     });
