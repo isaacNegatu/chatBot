@@ -17,4 +17,4 @@ var scholarshipsSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('Person', PersonSchema);
+module.exports = mongoose.model('Scholarship', scholarshipsSchema);
