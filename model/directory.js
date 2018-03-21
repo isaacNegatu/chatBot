@@ -4,8 +4,6 @@ let mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Directory = new Schema({
-
-
   
   firstName: String,
   lastName: String,
