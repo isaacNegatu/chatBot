@@ -30,9 +30,7 @@ app.post("/action", function (req, res) {
   var td = function (){
    return req.header; 
   }
-  
-  console.log(td.ip);
-  
+    
   if(req.body.originalRequest){
    questionHandler(req);
   }else{
@@ -50,19 +48,6 @@ app.post("/action", function (req, res) {
 let listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
-
-
-
-let colinTest = require('./colinTest');
-
-// dialog flow handling test - Colin Roskos
-app.post("/df-request", function (req, res) {
-  console.log("in colin test...");
-  colinTest(req, res);
-  console.log("end colin test");
-});
-
-
 
 
 

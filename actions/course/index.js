@@ -1,7 +1,6 @@
 
 let mongoose = require('mongoose');
 var Course = require("../../model/course");
-var CommonFees = require("../../model/commonFees");
 
 
 var db = process.env.MONGODB_URI;

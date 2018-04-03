@@ -1,5 +1,3 @@
-let testHandler = require('./test');
-let courseHandler = require("./course");
 
 let msHandler = require("./ms");
 
@@ -13,10 +11,7 @@ module.exports = function(req, res) {
     
     msHandler(req, res);
   }
-  
-  if(action.startsWith('input')){
-   testHandler(req, res);
-  }
+
   
   // Other actions:
 }

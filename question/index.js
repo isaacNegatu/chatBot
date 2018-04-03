@@ -12,7 +12,6 @@ module.exports = function (req){
         platform = req.body.originalRequest.source;
         platform_id = req.body.originalRequest.data.user;
         question = req.body.result.resolvedQuery;
-        
         resolve();
       });
     };
