@@ -17,12 +17,13 @@ module.exports = async function (req,res){
   
   console.log(course);
   let lName = req.body.result.parameters.lName; 
+  let term = 
   
   var fullName = `${lName},${fName}`;
   
   console.log(fullName);
   
-  if (course == "" || course == undefined){
+  if ((course == "" || course == undefined) && term == ""){
       var str = fullName + " teaches : ";
       var courseList = [];
 
@@ -32,6 +33,8 @@ module.exports = async function (req,res){
               then(c => {
                  
                c.coursesTaught.forEach(function (d){
+                 
+                 
                   let course = courseList.find(function (co){
                     return co == d.title;
                   });
@@ -53,6 +56,9 @@ module.exports = async function (req,res){
               })
               .catch(err => console.log(err));
       }
+  
+      res.status(200).json(reply);
+
 
   
   
