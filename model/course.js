@@ -1,31 +1,40 @@
 let mongoose = require('mongoose');
 
 var CourseSchema = new mongoose.Schema({
-  _id : mongoose.Schema.Types.ObjectId,
-  college: String,
-  title: String, 
+  _id: mongoose.Schema.Types.ObjectId,
   courseID: Number,
-  credits: String,
-  subject: String, // Math, Science, etc
+  subject: String,
   section: String,
-  description: String,
-  location: String,
-  room: String,
-  seatAvailability: {
-    open: Boolean,
-    size: String,
-    enrolled: String,
-    remainingSeats: String
-  },
-  schedule: {  /// Days/Hours check with team
+  credits: String,
+  meetingDetails: {
+    buildingAndRoom: String,
+    dates: String,
+    instructor: String,
     days: String,
     time: String
   },
+  number : String,
+  seatAvailability: {
+    size: String,
+    status : String,
+    seatsRemaining: String,
+    enrolled: String
+  },
+  title: String,
+  locationDetails: {
+    campus: String,
+    offeredThrough: String,
+    location: String
+  },
+  semester: String,
+  url: String,
   costs: {
-    fees: String,
-    costResident: String,
-    costNonResident: String
-  }
+    nonResident: String,
+    resident: String,
+    fees: String
+  },
+  goals: [String]
 });
 
-module.exports = mongoose.model('Course', CourseSchema);
+
+module.exports = mongoose.model("Course", CourseSchema);
