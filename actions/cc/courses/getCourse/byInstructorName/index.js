@@ -17,7 +17,7 @@ module.exports = async function (req,res){
   
   console.log(course);
   let lName = req.body.result.parameters.lName; 
-  let term = 
+  let term = req.body.result.parameters.term;
   
   var fullName = `${lName},${fName}`;
   
@@ -55,6 +55,43 @@ module.exports = async function (req,res){
 
               })
               .catch(err => console.log(err));
+      }else if (course == "" && term != ""){
+        
+        var str = fullName + " teaches : ";
+        var courseList = [];
+
+        await Faculty.findOne({name: fullName}).
+          populate("coursesTaught").
+          exec().
+          then(c => {
+
+           c.coursesTaught.forEach(function (d){
+              
+             
+             
+
+              let course = courseList.find(function (co){
+                return co == d.title;
+              });
+
+              if(!course){
+                courseList.push(d.title);
+              }
+              console.log(d.title);
+
+            });
+          })
+          .then(function (){
+            courseList.forEach(function (co){
+              str += co + ", ";
+            })
+            var realStr = str.substr(0,str.length-2);
+            reply = {'speech' : realStr  + "."};
+
+          })
+          .catch(err => console.log(err));
+
+        
       }
   
       res.status(200).json(reply);
