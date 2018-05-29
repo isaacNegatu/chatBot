@@ -15,7 +15,8 @@ module.exports = async function (req,res){
   let course = req.body.result.parameters.courses;
   let fName = req.body.result.parameters.fName;
   
-  console.log(course + 'hiii');
+  console.log(course.length);
+  
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
   
@@ -25,8 +26,8 @@ module.exports = async function (req,res){
   
   console.log(fullName);
   
-  if (course == "" && term === ""){
-      var str = fullName + " teaches : ";
+  if (course.length == 0 && term.length == 0){
+      var str = `${fName} ${lName} teaches : `;
       var courseList = [];
 
       await Faculty.findOne({name: fullName}).
@@ -42,9 +43,9 @@ module.exports = async function (req,res){
                   });
 
                   if(!course){
-                    courseList.push(d.title);
+                    courseList.push(d);
                   }
-                  console.log(d.title + 'adklsjfal;');
+                  console.log(d.title);
 
                 });
               })
@@ -59,7 +60,7 @@ module.exports = async function (req,res){
               .catch(err => console.log(err));
       }else if (course == "" && term != ""){
         
-        var str = fullName + " teaches : ";
+        var str = `${fName} ${lName} teaches : `;
         var courseList = [];
 
         await Faculty.findOne({name: fullName}).
@@ -70,18 +71,25 @@ module.exports = async function (req,res){
            c.coursesTaught.forEach(function (d){
               
               let course = courseList.find(function (co){
-                return co == d.title;
+                return co == d.courseID;
               });
 
               if(!course){
-                courseList.push(d.title);
+                courseList.push(d);
               }
-              console.log(d.title + 'ldfldlf');
+              console.log(d.title);
 
             });
           })
           .then(function (){
             courseList.forEach(function (co){
+              let sub = co.subject;
+              let num = co.number;
+              let sec = co.section;
+              let tit = co.title;
+              let days = co.meetingDetails.days;
+              let 
+              
               str += co + ", ";
             })
             var realStr = str.substr(0,str.length-2);
