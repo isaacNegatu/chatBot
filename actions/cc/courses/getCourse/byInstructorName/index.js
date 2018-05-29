@@ -231,7 +231,7 @@ module.exports = async function (req,res){
       }
   
       //you need to build urls for all the available options
-      reply = {'speech' : "www.google.com"}; 
+      reply = {'speech' : "<a href=\"www.google.com\">Google</a>"}; 
       res.status(200).json(reply);
 
 
