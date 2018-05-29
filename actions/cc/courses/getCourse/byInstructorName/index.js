@@ -231,7 +231,6 @@ module.exports = async function (req,res){
       }
   
       //you need to build urls for all the available options
-      reply = {'speech' : "ldsflak"}; 
       res.status(200).json(reply);
 
 
