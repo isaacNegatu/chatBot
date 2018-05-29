@@ -59,7 +59,7 @@ module.exports = async function (req,res){
                   let time = co.meetingDetails.time;
                   let term = co.semester.split(' ')[0];
                   
-                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${term}`;      
+                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${term} ,`;      
                 })
                 var realStr = str.substr(0,str.length-2);
                 reply = {'speech' : realStr  + "."};
