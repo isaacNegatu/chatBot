@@ -12,7 +12,7 @@ module.exports = async function (req,res){
   
   console.log("got to find by instructor");
   
-  let course = (req.body.result.parameters.courses) ? .split('-');
+  let course = (req.body.result.parameters.courses) ? req.body.result.parameters.courses.split('-'): "";
   let fName = req.body.result.parameters.fName;  
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
@@ -23,7 +23,7 @@ module.exports = async function (req,res){
   var fullName = `${lName},${fName}`;
 
   
-  if (course[0].length == 0 && term.length == 0){
+  if (course.length == 0 && term.length == 0){
       var str = `${fName} ${lName} teaches : `;
       var courseList = [];
 
