@@ -57,9 +57,9 @@ module.exports = async function (req,res){
                   let tit = co.title;
                   let days = co.meetingDetails.days;
                   let time = co.meetingDetails.time;
-                  let term = co.semester.split(' ')[0];
+                  let termFromDB = co.semester.split(' ')[0];
                   
-                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${term} ,`;      
+                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} ,`;      
                 })
                 var realStr = str.substr(0,str.length-2);
                 reply = {'speech' : realStr  + "."};
@@ -82,7 +82,7 @@ module.exports = async function (req,res){
                 return co == d.courseID;
               });
 
-              if(!course){
+              if(!course ){
                 courseList.push(d);
               }
               console.log(d.title);
@@ -90,18 +90,30 @@ module.exports = async function (req,res){
             });
           })
           .then(function (){
+          
+            let flag = false;
             courseList.forEach(function (co){
               let sub = co.subject;
-                  let num = co.number;
-                  let sec = co.section;
-                  let tit = co.title;
-                  let days = co.meetingDetails.days;
-                  let time = co.meetingDetails.time;
-                  
-                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} , `;  
+              let num = co.number;
+              let sec = co.section;
+              let tit = co.title;
+              let days = co.meetingDetails.days;
+              let time = co.meetingDetails.time;
+              
+              let termFromDB = co.semester.split(' ')[0];
+              
+              if(term == termFromDB){
+                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} , `; 
+              }
             })
+          
+          if(flag){
+            
             var realStr = str.substr(0,str.length-2);
             reply = {'speech' : realStr  + "."};
+          }else{
+            reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`};
+          }
 
           })
           .catch(err => console.log(err));
