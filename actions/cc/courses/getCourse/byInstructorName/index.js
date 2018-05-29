@@ -13,12 +13,10 @@ module.exports = async function (req,res){
   console.log("got to find by instructor");
   
   let course = req.body.result.parameters.courses;
-  let fName = req.body.result.parameters.fName;
-  
-  console.log(course.length);
-  
+  let fName = req.body.result.parameters.fName;  
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
+  
   
   console.log(term);
   
@@ -92,6 +90,7 @@ module.exports = async function (req,res){
           .then(function (){
           
             let flag = false;
+          
             courseList.forEach(function (co){
               let sub = co.subject;
               let num = co.number;
@@ -101,9 +100,65 @@ module.exports = async function (req,res){
               let time = co.meetingDetails.time;
               
               let termFromDB = co.semester.split(' ')[0];
-              
+            
               if(term == termFromDB){
-                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} , `; 
+                str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
+                flag = true;
+              }
+            })
+          
+          if(flag){
+            
+            var realStr = str.substr(0,str.length-2);
+            reply = {'speech' : realStr  + "."};
+          }else{
+            reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`};
+          }
+
+          })
+          .catch(err => console.log(err));
+
+        
+      }else if (course != "" && term != ""){
+        
+        var str = `${fName} ${lName} teaches : `;
+        var courseList = [];
+
+        await Faculty.findOne({name: fullName}).
+          populate("coursesTaught").
+          exec().
+          then(c => {
+
+           c.coursesTaught.forEach(function (d){
+              
+              let course = courseList.find(function (co){
+                return co == d.courseID;
+              });
+
+              if(!course ){
+                courseList.push(d);
+              }
+              console.log(d.title);
+
+            });
+          })
+          .then(function (){
+          
+            let flag = false;
+          
+            courseList.forEach(function (co){
+              let sub = co.subject;
+              let num = co.number;
+              let sec = co.section;
+              let tit = co.title;
+              let days = co.meetingDetails.days;
+              let time = co.meetingDetails.time;
+              
+              let termFromDB = co.semester.split(' ')[0];
+            
+              if(term == termFromDB){
+                str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
+                flag = true;
               }
             })
           
@@ -124,6 +179,4 @@ module.exports = async function (req,res){
       res.status(200).json(reply);
 
 
-  
-  
 }
