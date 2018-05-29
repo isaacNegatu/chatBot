@@ -51,7 +51,15 @@ module.exports = async function (req,res){
               })
               .then(function (){
                 courseList.forEach(function (co){
-                  str += co + ", ";
+                  let sub = co.subject;
+                  let num = co.number;
+                  let sec = co.section;
+                  let tit = co.title;
+                  let days = co.meetingDetails.days;
+                  let time = co.meetingDetails.time;
+                  let term = co.semester.split(' ')[0];
+                  
+                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${term}`;      
                 })
                 var realStr = str.substr(0,str.length-2);
                 reply = {'speech' : realStr  + "."};
@@ -84,13 +92,13 @@ module.exports = async function (req,res){
           .then(function (){
             courseList.forEach(function (co){
               let sub = co.subject;
-              let num = co.number;
-              let sec = co.section;
-              let tit = co.title;
-              let days = co.meetingDetails.days;
-              let 
-              
-              str += co + ", ";
+                  let num = co.number;
+                  let sec = co.section;
+                  let tit = co.title;
+                  let days = co.meetingDetails.days;
+                  let time = co.meetingDetails.time;
+                  
+                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} , `;  
             })
             var realStr = str.substr(0,str.length-2);
             reply = {'speech' : realStr  + "."};
