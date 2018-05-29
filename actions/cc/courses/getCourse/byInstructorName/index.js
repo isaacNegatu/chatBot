@@ -1,4 +1,4 @@
-let connection = require("/connection"); 
+let connection = require("../../../../../connection"); 
 let Course = require("../../../../../model/course");
 let Faculty = require("../../../../../model/facultyStaffTest");
 
