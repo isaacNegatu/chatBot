@@ -18,7 +18,7 @@ module.exports = async function (req,res){
   let term = req.body.result.parameters.term;
   
   
-  console.log(term);
+  console.log(term + "lfjakld" );
   
   var fullName = `${lName},${fName}`;
 
@@ -231,7 +231,7 @@ module.exports = async function (req,res){
       }
   
       //you need to build urls for all the available options
-      reply = {'speech' : "<a href=\"www.google.com\">Google</a>"}; 
+      reply = {'speech' : "ldsflak"}; 
       res.status(200).json(reply);
 
 
