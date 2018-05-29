@@ -15,15 +15,17 @@ module.exports = async function (req,res){
   let course = req.body.result.parameters.courses;
   let fName = req.body.result.parameters.fName;
   
-  console.log(course);
+  console.log(course + 'hiii');
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
+  
+  console.log(term);
   
   var fullName = `${lName},${fName}`;
   
   console.log(fullName);
   
-  if ((course == "" || course == undefined) && term == ""){
+  if (course == "" && term === ""){
       var str = fullName + " teaches : ";
       var courseList = [];
 
@@ -36,13 +38,13 @@ module.exports = async function (req,res){
                  
                  
                   let course = courseList.find(function (co){
-                    return co == d.title;
+                    return co == d.courseID;
                   });
 
                   if(!course){
                     courseList.push(d.title);
                   }
-                  console.log(d.title);
+                  console.log(d.title + 'adklsjfal;');
 
                 });
               })
@@ -67,9 +69,6 @@ module.exports = async function (req,res){
 
            c.coursesTaught.forEach(function (d){
               
-             
-             
-
               let course = courseList.find(function (co){
                 return co == d.title;
               });
@@ -77,7 +76,7 @@ module.exports = async function (req,res){
               if(!course){
                 courseList.push(d.title);
               }
-              console.log(d.title);
+              console.log(d.title + 'ldfldlf');
 
             });
           })

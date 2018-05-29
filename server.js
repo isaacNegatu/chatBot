@@ -36,9 +36,7 @@ app.post("/action", function (req, res) {
   var td = function (){
    return req.header; 
   }
-  
-  console.log(req);
-  
+    
   if(req.body.originalRequest){
    questionHandler(req);
   }else{
