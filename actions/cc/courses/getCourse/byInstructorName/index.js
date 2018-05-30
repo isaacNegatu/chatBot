@@ -16,10 +16,7 @@ module.exports = async function (req,res){
   let fName = req.body.result.parameters.fName;  
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
-  
-  
-  console.log(term + "lfjakld" );
-  
+    
   var fullName = `${lName},${fName}`;
 
   
