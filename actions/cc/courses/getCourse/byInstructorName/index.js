@@ -108,11 +108,7 @@ module.exports = async function (req,res){
             var realStr = str.substr(0,str.length-2);
             reply = {'speech' : realStr  + "."};
           }else{
-            reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`,
-                     "data" : {
-                       
-                              }
-                    };
+            reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`};
           }
 
           })
