@@ -230,7 +230,7 @@ module.exports = async function (req,res){
       //you need to build urls for all the available options
       res.status(200).json(reply);
       console.log('------------------------------------------------------------------------------------------------------------------');
-      console.log(res);
+      console.log(res.req.body);
 
 
 }
