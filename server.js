@@ -37,9 +37,16 @@ app.get("/", (request, response) => {
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
-  console.log(req.body.payload);
+  console.log(req.body.payload.response_url);
   
-  if(req.body.payload)
+  if(req.body.payload){
+    res.statusCode = 302;
+    res.setHeader("Location", req.body.payload.response_url);
+    res.status(200).json({"text" : "hi" });
+  }else{
+    
+    
+    
   
   let reply = {"data" : {
                 "slack" : {
@@ -86,6 +93,7 @@ app.post("/action", function (req, res) {
             };
   
   res.status(200).json(reply);
+  }
     
   // if(req.body.originalRequest){
   //  questionHandler(req);
