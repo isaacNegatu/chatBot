@@ -34,6 +34,8 @@ app.get("/", (request, response) => {
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
+  console.log(req);
+  
   let reply = {"data" : {
               "slack" : {
                 "text": "Would you like to play a game?",
@@ -83,7 +85,7 @@ app.post("/action", function (req, res) {
   if(req.body.originalRequest){
    questionHandler(req);
   }else{
-   messages.insert({question: req.body.result.resolvedQuery});
+   // messages.insert({question: req.body.result.resolvedQuery});
   }
   // Save message in database
   actionHandler(req, res);
