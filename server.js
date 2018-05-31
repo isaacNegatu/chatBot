@@ -37,12 +37,16 @@ app.get("/", (request, response) => {
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
-  console.log(req.body.payload.response_url);
   
   if(req.body.payload){
+    let d = JSON.parse(req.body.payload);
+    console.log(d);
+
     res.statusCode = 302;
-    res.setHeader("Location", req.body.payload.response_url);
-    res.status(200).json({"text" : "hi" });
+    res.setHeader("Location", d.response_url);
+    res.status(200).json({"text" : "hi",
+                         "replace_original" : false 
+                         });
   }else{
     
     
