@@ -108,7 +108,11 @@ module.exports = async function (req,res){
             var realStr = str.substr(0,str.length-2);
             reply = {'speech' : realStr  + "."};
           }else{
-            reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`};
+            reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`,
+                     "data" : {
+                       
+                              }
+                    };
           }
 
           })
@@ -230,7 +234,7 @@ module.exports = async function (req,res){
       //you need to build urls for all the available options
       res.status(200).json(reply);
       console.log('------------------------------------------------------------------------------------------------------------------');
-      console.log(res.req.body);
+      console.log(res.json());
 
 
 }
