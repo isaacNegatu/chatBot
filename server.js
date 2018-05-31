@@ -37,6 +37,7 @@ app.get("/", (request, response) => {
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
+  console.log(req.body);
   
   if(req.body.payload){
     let d = JSON.parse(req.body.payload);
@@ -93,7 +94,7 @@ app.post("/action", function (req, res) {
                     ]
                 }
               },
-               "speech" : "hello"
+               "speech" : "hi"
             };
   
   res.status(200).json(reply);
