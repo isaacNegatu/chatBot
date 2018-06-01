@@ -75,7 +75,7 @@ app.post("/action", function (req, res) {
                          {
                           "type":"postback",
                           "title":"summer",
-                          "payload":"cc.courses.getCourse.byInstructorName"
+                          "payload":"'action' : 'cc.courses.getCourse.byInstructorName'"
                         }
                       ]
                     }
