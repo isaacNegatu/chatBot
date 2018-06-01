@@ -54,41 +54,16 @@ app.post("/action", function (req, res) {
     
   
   let reply = {"data" : {
-                "slack" : {
-                  "text": "Would you like to choose a semseter?",
-                  "attachments": [
-                      {
-                          
-                          "fallback": "You are unable to choose a game",
-                          "callback_id": "wopr_game",
-                          "color": "#3AA3E3",
-                          "attachment_type": "default",
-                          "actions": [
-                              {
-                                  "name": "game",
-                                  "text": "Fall",
-                                  "type": "button",
-                                  "value": "fall"
-                              },
-                              {
-                                  "name": "game",
-                                  "text": "Spring",
-                                  "type": "button",
-                                  "value": "spring"
-                              },
-                              {
-                                  "name": "game",
-                                  "text": "Summer",
-                                  "type": "button",
-                                  "value": "summer"
-                              }
-                              
-                            ]
-                        }
-                    ]
+                "facebook": {
+                  "attachment": {
+                    "type": "file",
+                    "payload": {
+                      "url": "https://examples.dialogflow.com/RichMessagesFiles/LoremIpsum.pdf"
+                    }
+                  }
                 }
               },
-               "speech" : "hi"
+               "speech" : "heloooo"
             };
   
   res.status(200).json(reply);
