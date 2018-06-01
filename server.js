@@ -68,19 +68,19 @@ app.post("/action", function (req, res) {
                                   "name": "game",
                                   "text": "Fall",
                                   "type": "button",
-                                  "value": "chess"
+                                  "value": "fall"
                               },
                               {
                                   "name": "game",
                                   "text": "Spring",
                                   "type": "button",
-                                  "value": "maze"
+                                  "value": "spring"
                               },
                               {
                                   "name": "game",
                                   "text": "Summer",
                                   "type": "button",
-                                  "value": "maze"
+                                  "value": "summer"
                               }
                               
                             ]
