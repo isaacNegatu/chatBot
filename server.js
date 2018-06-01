@@ -65,17 +65,17 @@ app.post("/action", function (req, res) {
                         {
                           "type":"postback",
                           "title":"fall",
-                          "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                          "payload":"fall"
                         },
                          {
                           "type":"postback",
                           "title":"spring",
-                          "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                          "payload":"spring"
                         },
                          {
                           "type":"postback",
                           "title":"summer",
-                          "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                          "payload":"summer"
                         }
                       ]
                     }
