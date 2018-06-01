@@ -75,9 +75,24 @@ app.post("/action", function (req, res) {
                          {
                           "type":"postback",
                           "title":"summer",
-                          "payload":"summer"
+                          "payload":{
+                            "result": {
+                              "source": "agent",
+                              "resolvedQuery": "what does zakaria baani teach?",
+                              "speech": "",
+                              "action": "cc.courses.getCourse.byInstructorName",
+                              "actionIncomplete": false,
+                              "parameters": {
+                                "lName": "Baani",
+                                "courses": "",
+                                "term": "",
+                                "fName": "Zakaria"
+                              }
+                          }
                         }
+                      }
                       ]
+                           
                     }
                   }
                 }
