@@ -39,68 +39,68 @@ app.post("/action", function (req, res) {
   
   console.log(req.body);
   
-//   if(req.body.payload){
-//     let d = JSON.parse(req.body.payload);
-//     console.log(d);
+  if(req.body.payload){
+    let d = JSON.parse(req.body.payload);
+    console.log(d);
 
-//     res.statusCode = 302;
-//     res.setHeader("Location", d.response_url);
-//     res.status(200).json({"text" : "hi",
-//                          "replace_original" : false 
-//                          });
-//   }else{
-    
-    
-    
-  
-//   let reply = {"data" : {
-//                 "slack" : {
-//                   "text": "Would you like to choose a semseter?",
-//                   "attachments": [
-//                       {
-                          
-//                           "fallback": "You are unable to choose a game",
-//                           "callback_id": "wopr_game",
-//                           "color": "#3AA3E3",
-//                           "attachment_type": "default",
-//                           "actions": [
-//                               {
-//                                   "name": "game",
-//                                   "text": "Fall",
-//                                   "type": "button",
-//                                   "value": "chess"
-//                               },
-//                               {
-//                                   "name": "game",
-//                                   "text": "Spring",
-//                                   "type": "button",
-//                                   "value": "maze"
-//                               },
-//                               {
-//                                   "name": "game",
-//                                   "text": "Summer",
-//                                   "type": "button",
-//                                   "value": "maze"
-//                               }
-                              
-//                             ]
-//                         }
-//                     ]
-//                 }
-//               },
-//                "speech" : "hi"
-//             };
-  
-//   res.status(200).json(reply);
-//   }
-    
-  if(req.body.originalRequest){
-   questionHandler(req);
+    res.statusCode = 302;
+    res.setHeader("Location", d.response_url);
+    res.status(200).json({"text" : "hi",
+                         "replace_original" : false 
+                         });
   }else{
-   messages.insert({question: req.body.result.resolvedQuery});
+    
+    
+    
+  
+  let reply = {"data" : {
+                "slack" : {
+                  "text": "Would you like to choose a semseter?",
+                  "attachments": [
+                      {
+                          
+                          "fallback": "You are unable to choose a game",
+                          "callback_id": "wopr_game",
+                          "color": "#3AA3E3",
+                          "attachment_type": "default",
+                          "actions": [
+                              {
+                                  "name": "game",
+                                  "text": "Fall",
+                                  "type": "button",
+                                  "value": "chess"
+                              },
+                              {
+                                  "name": "game",
+                                  "text": "Spring",
+                                  "type": "button",
+                                  "value": "maze"
+                              },
+                              {
+                                  "name": "game",
+                                  "text": "Summer",
+                                  "type": "button",
+                                  "value": "maze"
+                              }
+                              
+                            ]
+                        }
+                    ]
+                }
+              },
+               "speech" : "hi"
+            };
+  
+  res.status(200).json(reply);
   }
-  // Save message in database
-  actionHandler(req, res);
+    
+  // if(req.body.originalRequest){
+  //  questionHandler(req);
+  // }else{
+  //  messages.insert({question: req.body.result.resolvedQuery});
+  // }
+  // // Save message in database
+  // actionHandler(req, res);
   
 });
 
