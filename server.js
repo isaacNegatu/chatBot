@@ -56,20 +56,26 @@ app.post("/action", function (req, res) {
   let reply = {"data" : 
                {
                 "facebook" : {
-                    "type":"postback",
-                    "title":"button",
-                    "payload":{
-                      "template_type":"button",
-                      "text":"Try the postback button!",
-                      "buttons":[
-                        {
-                          "type":"postback",
-                          "title":"Postback Button",
-                          "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                     "recipient":{
+                        "id":"1234"
+                      },
+                      "message":{
+                        "attachment":{
+                          "type":"template",
+                          "payload":{
+                            "template_type":"button",
+                            "text":"Try the postback button!",
+                            "buttons":[
+                              {
+                                "type":"postback",
+                                "title":"Postback Button",
+                                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                              }
+                            ]
+                          }
                         }
-                      ]
-                    }
-                  }
+                      }
+                }
               },
                "speech" : "hi"
             };
