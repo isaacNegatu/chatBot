@@ -61,8 +61,6 @@ app.post("/action", function (req, res) {
   let fname = req.body.result.parameters.fName;
   let lname = req.body.result.parameters.lName;
     
-  let fallPayload = `${fname} ${lname} fall`;
-  console.log(fallPayload);
   
   let reply = {"data" : 
                {
