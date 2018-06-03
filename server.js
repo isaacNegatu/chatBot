@@ -76,17 +76,17 @@ app.post("/action", function (req, res) {
                         {
                           "type":"postback",
                           "title":"fall",
-                          "payload":`${fname} ${lname} fall`
+                          "payload":`${fname} ${lname} fall?`
                         },
                          {
                           "type":"postback",
                           "title":"spring",
-                          "payload":`${fname} ${lname} spring`
+                          "payload":`${fname} ${lname} spring?`
                         },
                          {
                           "type":"postback",
                           "title":"summer",
-                          "payload":`${fname} ${lname} summer`
+                          "payload":`${fname} ${lname} summer?`
                         }
                       ]
                     }
