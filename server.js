@@ -32,13 +32,21 @@ app.get("/", (request, response) => {
 })
 
 
+app.get("/fbVerify", (req, res) => {
+  if (req.query['hub.verify_token'] === 'verified') {
+      res.send(req.query['hub.challenge']);
+   } else {
+      res.send('Error, wrong validation token');    
+   }
+});
+
 
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
   console.log(req.body);
-  
+ 
   if(req.body.payload){
     let d = JSON.parse(req.body.payload);
     console.log(d);
