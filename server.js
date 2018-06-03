@@ -84,7 +84,7 @@ app.post("/action", function (req, res) {
                          {
                           "type":"postback",
                           "title":"summer",
-                          "payload":`${fname} ${lname} summer?`
+                          "payload":`${fname} ${lname} all?`
                         }
                       ]
                     }
