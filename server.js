@@ -59,7 +59,7 @@ app.post("/action", function (req, res) {
     
     
   let fname = req.body.result.parameters.fName;
-  let lname = req.body.result.parameters.fName;
+  let lname = req.body.result.parameters.lName;
     
   let fallPayload = `${fname} ${lname} fall`;
   console.log(fallPayload);
@@ -76,17 +76,17 @@ app.post("/action", function (req, res) {
                         {
                           "type":"postback",
                           "title":"fall",
-                          "payload":"fall"
+                          "payload":`${fname} ${lname} fall`
                         },
                          {
                           "type":"postback",
                           "title":"spring",
-                          "payload":"spring"
+                          "payload":`${fname} ${lname} spring`
                         },
                          {
                           "type":"postback",
                           "title":"summer",
-                          "payload":"summer"
+                          "payload":`${fname} ${lname} summer`
                         }
                       ]
                     }
