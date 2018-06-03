@@ -32,12 +32,13 @@ app.get("/", (request, response) => {
 })
 
 
-app.get("/fbVerify", (req, res) => {
-  if (req.query['hub.verify_token'] === 'verified') {
+app.get("/action", function(req, res){
+    if (req.query['hub.verify_token'] === 'verified') {
       res.send(req.query['hub.challenge']);
    } else {
       res.send('Error, wrong validation token');    
    }
+  
 });
 
 
