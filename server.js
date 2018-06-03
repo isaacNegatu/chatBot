@@ -45,9 +45,7 @@ app.post("/action", function (req, res) {
 
     res.statusCode = 302;
     res.setHeader("Location", d.response_url);
-    res.status(200).json({"text" : "hi",
-                         "replace_original" : false 
-                         });
+    res.status(200).json({"text" : "hi"});
   }else{
     
     
