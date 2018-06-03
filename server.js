@@ -58,7 +58,10 @@ app.post("/action", function (req, res) {
   }else{
     
     
+  let fname = req.body.result.parameters.fName;
+  let lname = req.body.result.parameters.fName;
     
+  
   
   let reply = {"data" : 
                {
@@ -72,17 +75,17 @@ app.post("/action", function (req, res) {
                         {
                           "type":"postback",
                           "title":"fall",
-                          "payload":"fall"
+                          "payload":`${fname} ${lname} fall`
                         },
                          {
                           "type":"postback",
                           "title":"spring",
-                          "payload":"spring"
+                          "payload":`${fname} ${lname} fall`
                         },
                          {
                           "type":"postback",
                           "title":"summer",
-                          "payload": "summer"
+                          "payload": `${fname} ${lname} fall`
                         }
                       ]
                     }
