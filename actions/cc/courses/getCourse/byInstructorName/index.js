@@ -5,6 +5,15 @@ let getCourse = require("../courseDBquery");
 
 
 
+function quickReply(){
+ 
+  let currentDate = new Date();
+  
+}
+
+
+
+
 module.exports = async function (req,res){
  
   let reply = {'speech' : "The teacher doesn't exist"}; 
@@ -22,6 +31,8 @@ module.exports = async function (req,res){
 
   
   if (course.length == 0 && term.length == 0){
+    
+      
     
      reply = {"data" : 
                {

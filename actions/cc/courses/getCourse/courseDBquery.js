@@ -1,4 +1,4 @@
-module.exports = (fName, lName , term = "", course = "") => {
+module.exports = (fName = "" , lName = "" , term = "", course = "") => {
   
   console.log(fName, lName);
   
