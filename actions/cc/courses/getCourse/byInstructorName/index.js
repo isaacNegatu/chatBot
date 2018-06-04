@@ -6,8 +6,13 @@ let getCourse = require("../courseDBquery");
 
 
 function quickReply(){
+   let currentDate = new Date();
+  
+  let fallStartDate = new Date(`August 9 ${currentDate.getYear()}`);
+  
  
-  let currentDate = new Date();
+ 
+  
   
 }
 
