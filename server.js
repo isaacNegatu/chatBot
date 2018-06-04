@@ -46,64 +46,15 @@ app.get("/action", function(req, res){
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
-  console.log(req.body);
  
-  if(req.body.payload){
-    let d = JSON.parse(req.body.payload);
-    console.log(d);
-
-    res.statusCode = 302;
-    res.setHeader("Location", d.response_url);
-    res.status(200).json({"text" : "hi"});
+    
+  if(req.body.originalRequest){
+   questionHandler(req);
   }else{
-    
-    
-  let fname = req.body.result.parameters.fName;
-  let lname = req.body.result.parameters.lName;
-    
-  
-  let reply = {"data" : 
-               {
-                "facebook" : {
-                    "text":"Pick a Semester:",
-                    "quick_replies":[
-                      {
-                        "content_type":"text",
-                        "title":"Fall",
-                        "payload":`${fname} ${lname} fall`
-                      },
-                      {
-                        "content_type":"text",
-                        "title":"Spring",
-                        "payload":`${fname} ${lname} spring`
-                      },
-                      {
-                        "content_type":"text",
-                        "title":"Summer",
-                        "payload":`${fname} ${lname} summer`
-                      },
-                      {
-                        "content_type":"text",
-                        "title":"All",
-                        "payload":`${fname} ${lname} all`
-                      }
-                    ]
-                  }
-
-              },
-               "speech" : "hi"
-            };
-  
-  res.status(200).json(reply);
+   messages.insert({question: req.body.result.resolvedQuery});
   }
-    
-  // if(req.body.originalRequest){
-  //  questionHandler(req);
-  // }else{
-  //  messages.insert({question: req.body.result.resolvedQuery});
-  // }
-  // // Save message in database
-  // actionHandler(req, res);
+  // Save message in database
+  actionHandler(req, res);
   
 });
 

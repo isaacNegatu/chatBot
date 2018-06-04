@@ -22,45 +22,77 @@ module.exports = async function (req,res){
 
   
   if (course.length == 0 && term.length == 0){
-      var str = `${fName} ${lName} teaches : `;
-      var courseList = [];
-
-      await Faculty.findOne({name: fullName}).
-              populate("coursesTaught").
-              exec().
-              then(c => {
-                 
-               c.coursesTaught.forEach(function (d){
-                 
-                 
-                  let course = courseList.find(function (co){
-                    return co == d.courseID;
-                  });
-
-                  if(!course){
-                    courseList.push(d);
+    
+     reply = {"data" : 
+               {
+                "facebook" : {
+                    "text":"Pick a Semester:",
+                    "quick_replies":[
+                      {
+                        "content_type":"text",
+                        "title":"Fall",
+                        "payload":`${fName} ${lName} fall`
+                      },
+                      {
+                        "content_type":"text",
+                        "title":"Spring",
+                        "payload":`${fName} ${lName} spring`
+                      },
+                      {
+                        "content_type":"text",
+                        "title":"Summer",
+                        "payload":`${fName} ${lName} summer`
+                      },
+                      {
+                        "content_type":"text",
+                        "title":"All",
+                        "payload":`${fName} ${lName} all`
+                      }
+                    ]
                   }
-                  console.log(d.title);
 
-                });
-              })
-              .then(function (){
-                courseList.forEach(function (co){
-                  let sub = co.subject;
-                  let num = co.number;
-                  let sec = co.section;
-                  let tit = co.title;
-                  let days = co.meetingDetails.days;
-                  let time = co.meetingDetails.time;
-                  let termFromDB = co.semester.split(' ')[0];
+              },
+               "speech" : "hi"
+            };
+//       var str = `${fName} ${lName} teaches : `;
+//       var courseList = [];
+
+//       await Faculty.findOne({name: fullName}).
+//               populate("coursesTaught").
+//               exec().
+//               then(c => {
+                 
+//                c.coursesTaught.forEach(function (d){
+                 
+                 
+//                   let course = courseList.find(function (co){
+//                     return co == d.courseID;
+//                   });
+
+//                   if(!course){
+//                     courseList.push(d);
+//                   }
+//                   console.log(d.title);
+
+//                 });
+//               })
+//               .then(function (){
+//                 courseList.forEach(function (co){
+//                   let sub = co.subject;
+//                   let num = co.number;
+//                   let sec = co.section;
+//                   let tit = co.title;
+//                   let days = co.meetingDetails.days;
+//                   let time = co.meetingDetails.time;
+//                   let termFromDB = co.semester.split(' ')[0];
                   
-                  str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} ,`;      
-                })
-                var realStr = str.substr(0,str.length-2);
-                reply = {'speech' : realStr  + "."};
+//                   str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} ,`;      
+//                 })
+//                 var realStr = str.substr(0,str.length-2);
+//                 reply = {'speech' : realStr  + "."};
 
-              })
-              .catch(err => console.log(err));
+//               })
+//               .catch(err => console.log(err));
       }else if (course == "" && term != ""){
         
         var str = `${fName} ${lName} teaches : `;
