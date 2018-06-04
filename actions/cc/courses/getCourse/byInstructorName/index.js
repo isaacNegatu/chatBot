@@ -9,9 +9,9 @@ function quickReply(){
    let currentDate = new Date();
   let semester = "";
   
-  let fallStartDate = new Date(`August 10 ${currentDate.getYear()}`);
-  let summerStartDate = new Date(`May 12 ${currentDate.getYear()}`);
-  let springStartDate = new Date(`Decemeber 15 ${currentDate.getYear()}`);
+  let fallStartDate = new Date(`August 10 ${currentDate.getFullYear()}`);
+  let summerStartDate = new Date(`May 12 ${currentDate.getFullYear()}`);
+  let springStartDate = new Date(`Decemeber 15 ${currentDate.getFullYear()}`);
   
   if(currentDate > summerStartDate && currentDate <= springStartDate){
     semester = "fall";
