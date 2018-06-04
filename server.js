@@ -65,32 +65,31 @@ app.post("/action", function (req, res) {
   let reply = {"data" : 
                {
                 "facebook" : {
-                  "attachment":{
-                    "type":"template",
-                    "payload":{
-                      "template_type":"button",
-                      "text":"Please choose the semester",
-                      "buttons":[
-                        {
-                          "type":"postback",
-                          "title":"fall",
-                          "payload":`${fname} ${lname} fall?`
-                        },
-                         {
-                          "type":"postback",
-                          "title":"spring",
-                          "payload":`${fname} ${lname} spring?`
-                        },
-                         {
-                          "type":"postback",
-                          "title":"summer",
-                          "payload":`${fname} ${lname} summer?`
-                        }
-                      ]
-                    }
+                    "text":"Pick a Semester:",
+                    "quick_replies":[
+                      {
+                        "content_type":"text",
+                        "title":"Fall",
+                        "payload":`${fname} ${lname} fall`
+                      },
+                      {
+                        "content_type":"text",
+                        "title":"Spring",
+                        "payload":`${fname} ${lname} spring`
+                      },
+                      {
+                        "content_type":"text",
+                        "title":"Summer",
+                        "payload":`${fname} ${lname} summer`
+                      },
+                      {
+                        "content_type":"text",
+                        "title":"All",
+                        "payload":`${fname} ${lname} all`
+                      }
+                    ]
                   }
-                }
-                
+
               },
                "speech" : "hi"
             };
