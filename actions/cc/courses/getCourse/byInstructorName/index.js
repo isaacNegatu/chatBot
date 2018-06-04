@@ -7,14 +7,25 @@ let getCourse = require("../courseDBquery");
 
 function quickReply(){
    let currentDate = new Date();
+  let semester = "";
   
-  let fallStartDate = new Date(`August 9 ${currentDate.getYear()}`);
+  let fallStartDate = new Date(`August 10 ${currentDate.getYear()}`);
+  let summerStartDate = new Date(`May 12 ${currentDate.getYear()}`);
+  let springStartDate = new Date(`Decemeber 15 ${currentDate.getYear()}`);
   
- 
- 
+  if(currentDate > summerStartDate && currentDate <= springStartDate){
+    semester = "fall";
+  }else if (currentDate > springStartDate && currentDate <= summerStartDate){
+    semester = "spring";
+  }else{
+    semester = "summer";
+  }
   
-  
+  console.log(semester);
+
 }
+
+quickReply();
 
 
 
@@ -278,7 +289,6 @@ module.exports = async function (req,res){
   
       //you need to build urls for all the available options
       res.status(200).json(reply);
-      console.log('------------------------------------------------------------------------------------------------------------------');
       // console.log(res.json());
 
 
