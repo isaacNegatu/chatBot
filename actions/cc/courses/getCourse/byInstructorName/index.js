@@ -2,6 +2,7 @@ let connection = require("../../../../../connection");
 let Course = require("../../../../../model/course");
 let Faculty = require("../../../../../model/facultyStaffTest");
 let getCourse = require("../courseDBquery");
+let os = require("os");
 
 
 
@@ -53,6 +54,9 @@ module.exports = async function (req,res){
   let term = req.body.result.parameters.term;
     
   var fullName = `${lName},${fName}`;
+  
+  console.log(os.EOL);
+  
 
   
   if (course.length == 0 && term.length == 0){
@@ -63,7 +67,7 @@ module.exports = async function (req,res){
                {
                 "facebook" : {
                     "text":"Pick a Semester:",
-                    "text": "something else",
+                    "text": "SOMETHING" ,
                     "quick_replies":[
                       {
                         "content_type":"text",
@@ -88,21 +92,9 @@ module.exports = async function (req,res){
                     ]
                   }
 
-              },
-                  "speech": "",
-                  "messages": [
-                  {
-                  "type": 0,
-                  "speech": "my first response"
-                  },
-                  {
-                  "type": 0,
-                  "speech": "my second response"
-                  }
-                  ],
-                  "source": "sourcename"
-                  
-                };
+                },
+                "speech" : "hi"
+              };
 
 //       var str = `${fName} ${lName} teaches : `;
 //       var courseList = [];
