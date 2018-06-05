@@ -48,7 +48,8 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
               
               let termFromDB = co.semester.split(' ')[0];
             
-              if(true){
+              
+              if(term == termFromDB){
                 str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
                 flag = true;
               }

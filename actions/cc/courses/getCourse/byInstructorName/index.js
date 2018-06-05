@@ -26,14 +26,16 @@ function getCurrentSemester(n){
   
   if(currentDate > fallStartDate && currentDate <= springStartDate){
     semester = "fall";
-    
+    nextSemester = "spring";
   }else if (currentDate > springStartDate && currentDate <= summerStartDate){
     semester = "spring";
+    nextSemester = "summer"
   }else{
     semester = "summer";
+    nextSemester = "fall";
   }
    
-  return semester;
+  return [semester, nextSemester];
 }
 
 
@@ -54,8 +56,12 @@ module.exports = async function (req,res){
   var fullName = `${lName},${fName}`;
   
   let semesters = getCurrentSemester();
+  
+  let currentSemester = semesters[0];
+  let nextSemester = semesters[1];
 
-
+  console.log(currentSemester + " " + nextSemester);
+  
   
   if (course.length == 0 && term.length == 0){
     
@@ -68,28 +74,19 @@ module.exports = async function (req,res){
                {
                 "facebook" : {
                   
-                    "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in other semesters?` ,
+                    "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in the ${nextSemester}?` ,
                     "quick_replies":[
                       {
                         "content_type":"text",
-                        "title":"Fall",
-                        "payload":`${fName} ${lName} fall`
+                        "title":"Yes",
+                        "payload":`${fName} ${lName} ${nextSemester}`
                       },
                       {
                         "content_type":"text",
-                        "title":"Spring",
-                        "payload":`${fName} ${lName} spring`
-                      },
-                      {
-                        "content_type":"text",
-                        "title":"Summer",
-                        "payload":`${fName} ${lName} summer`
-                      },
-                      {
-                        "content_type":"text",
-                        "title":"All",
-                        "payload":`${fName} ${lName} all`
+                        "title":"No",
+                        "payload":`something`
                       }
+                      
                     ]
                   }
 
