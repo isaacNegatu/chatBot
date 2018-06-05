@@ -34,8 +34,6 @@ function quickReply(n){
   return semester;
 }
 
-console.log(quickReply());
-
 
 
 
@@ -44,9 +42,7 @@ module.exports = async function (req,res){
  
   let reply = {'speech' : "The teacher doesn't exist"}; 
   
-  console.log(req.body.result.parameters);
   
-  console.log("got to find by instructor");
   
   let course = (req.body.result.parameters.courses) ? req.body.result.parameters.courses.split('-'): "";
   let fName = req.body.result.parameters.fName;  
@@ -54,14 +50,14 @@ module.exports = async function (req,res){
   let term = req.body.result.parameters.term;
     
   var fullName = `${lName},${fName}`;
-  console.log("dlkfjdl" );
-  console.log(os.EOL + "DKFJADSL" );
-  
+
 
   
   if (course.length == 0 && term.length == 0){
     
      let course = getCourse(fName, lName);
+    
+    console.log(course + "ladjsflkjsadlfjlasdjf" );
       
       
     

@@ -57,14 +57,14 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
           if(flag){
             
             var realStr = str.substr(0,str.length-2);
-            reply = `$
+            reply = `${realStr} .`;
           }else{
-            reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`};
+            reply = `${fName} ${lName} doesn't have a schedule in the ${term}`;
           }
 
           })
           .catch(err => console.log(err));
-  
+        
         return reply;
   
 };
