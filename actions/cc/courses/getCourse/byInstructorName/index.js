@@ -54,20 +54,21 @@ module.exports = async function (req,res){
   let term = req.body.result.parameters.term;
     
   var fullName = `${lName},${fName}`;
- 
-  console.log(req.body.originalRequest);
+  console.log("dlkfjdl" );
+  console.log(os.EOL + "DKFJADSL" );
   
-  let psid = req.body.originalRequest.data.sender.id;
-  console.log(psid);
 
   
   if (course.length == 0 && term.length == 0){
     
+     let course = getCourse(fName, lName);
+      
       
     
      reply = {"data" : 
                {
                 "facebook" : {
+                  
                     "text": `pick a semseter` ,
                     "quick_replies":[
                       {
@@ -96,12 +97,6 @@ module.exports = async function (req,res){
                 },
                 "speech" : "hi"
               };
-    
-      res.write(JSON.stringify(reply));
-    
-      res.write(JSON.stringify(reply));
-    
-      res.end();
 
 //       var str = `${fName} ${lName} teaches : `;
 //       var courseList = [];
@@ -310,26 +305,8 @@ module.exports = async function (req,res){
       }
   
       //you need to build urls for all the available options
-      
-  
-      setTimeout(function(){
-        
-        
-//         let nextReply = {"data":
-//                          {
-//                          "facebook" : {
-//                            "messege" : {
-//                               "text" : "df"
-//                            }
-//                          }
-//                         }
-//                        };
-        
-//         res.write(JSON.stringify(nextReply));
-//         res.end();
-        
-//         console.log(nextReply);
-      
-      }, 4000);
+      res.status(200).json(reply);
+      // console.log(res.json());
+
 
 }
