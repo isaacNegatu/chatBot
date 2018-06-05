@@ -70,7 +70,7 @@ module.exports = async function (req,res){
     
      let cd = "";
         
-    getCourse(fName, lName, queryTerm )
+    getCourse(fName, lName, queryTerm)
       .then(c => {
       
       reply = {"data" : 

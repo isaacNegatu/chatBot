@@ -48,8 +48,9 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
               
               let termFromDB = co.semester.split(' ')[0];
             
+              console.log(termFromDB);
               
-              if(term == termFromDB){
+              if(term.toUpperCase() == termFromDB.toUpperCase()){
                 str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
                 flag = true;
               }
