@@ -5,27 +5,36 @@ let getCourse = require("../courseDBquery");
 
 
 
-function quickReply(){
-   let currentDate = new Date();
+
+
+function quickReply(n){
+  let currentDate = new Date();
   let semester = "";
+    
+  let fallSemesterSafeZone = new Date (`August 15 ${currentDate.getFullYear()}`);
+  let nextYear = currentDate.getFullYear();
   
+  if (currentDate > fallSemesterSafeZone){
+    nextYear++;
+  }
+
   let fallStartDate = new Date(`August 10 ${currentDate.getFullYear()}`);
-  let summerStartDate = new Date(`May 12 ${currentDate.getFullYear()}`);
-  let springStartDate = new Date(`Decemeber 15 ${currentDate.getFullYear()}`);
+  let summerStartDate = new Date(`May 12 ${nextYear}`);
+  let springStartDate = new Date(`Decemeber 15 ${nextYear}`);
   
-  if(currentDate > summerStartDate && currentDate <= springStartDate){
+  if(currentDate > fallStartDate && currentDate <= springStartDate){
     semester = "fall";
   }else if (currentDate > springStartDate && currentDate <= summerStartDate){
     semester = "spring";
   }else{
     semester = "summer";
   }
-  
-  console.log(semester);
-
+   
+  return semester;
 }
 
-quickReply();
+console.log(quickReply());
+
 
 
 
