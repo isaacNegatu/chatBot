@@ -59,7 +59,10 @@ module.exports = async function (req,res){
   
   let currentSemester = semesters[0];
   let nextSemester = semesters[1];
-
+  
+  let queryTerm = (term == "")? currentSemester: term;
+  
+  
   console.log(currentSemester + " " + nextSemester);
   
   
@@ -67,7 +70,7 @@ module.exports = async function (req,res){
     
      let cd = "";
         
-    getCourse(fName, lName, getCurrentSemester() )
+    getCourse(fName, lName, queryTerm )
       .then(c => {
       
       reply = {"data" : 
@@ -161,7 +164,7 @@ module.exports = async function (req,res){
               if(!course ){
                 courseList.push(d);
               }
-              console.log(d.title);
+              console.log(d.title + "kdjflkdfj" );
 
             });
           })
@@ -196,7 +199,8 @@ module.exports = async function (req,res){
           })
           .catch(err => console.log(err));
 
-        
+          res.status(200).json(reply);
+
       }else if (course != "" && term != ""){
         
         var str = `${fName} ${lName} teaches : `;

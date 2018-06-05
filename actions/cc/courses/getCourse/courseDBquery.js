@@ -8,7 +8,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
   
   let reply = "";
   
-  console.log(fName, lName);
+  console.log(fName, lName, term);
   
   let str = `${fName} ${lName} teaches : `;
   let courseList = [];
