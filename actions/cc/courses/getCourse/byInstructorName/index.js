@@ -97,7 +97,11 @@ module.exports = async function (req,res){
                 "speech" : "hi"
               };
     
-      res.write.json(reply);
+      res.write(JSON.stringify(reply));
+    
+      res.write(JSON.stringify(reply));
+    
+      res.end();
 
 //       var str = `${fName} ${lName} teaches : `;
 //       var courseList = [];
@@ -311,19 +315,21 @@ module.exports = async function (req,res){
       setTimeout(function(){
         
         
-        let nextReply = {"data":
-                         {
-                         "facebook" : {
-                           "messege" : {
-                              "text" : "df"
-                           }
-                         }
-                        }
-                       };
+//         let nextReply = {"data":
+//                          {
+//                          "facebook" : {
+//                            "messege" : {
+//                               "text" : "df"
+//                            }
+//                          }
+//                         }
+//                        };
         
-        res.write(nextReply);
-        res.end();
+//         res.write(JSON.stringify(nextReply));
+//         res.end();
+        
+//         console.log(nextReply);
       
-      }, 3000);
+      }, 4000);
 
 }
