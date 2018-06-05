@@ -97,7 +97,7 @@ module.exports = async function (req,res){
                 "speech" : "hi"
               };
     
-      res.status(200).json(reply);
+      res.write.json(reply);
 
 //       var str = `${fName} ${lName} teaches : `;
 //       var courseList = [];
@@ -307,16 +307,22 @@ module.exports = async function (req,res){
   
       //you need to build urls for all the available options
       
-      // console.log(res.json());
-
+  
       setTimeout(function(){
         
         
         let nextReply = {"data":
+                         {
                          "facebook" : {
-                           "messege" ; {
-                              "text" : "
-        res.status(200).json(reply);
+                           "messege" : {
+                              "text" : "df"
+                           }
+                         }
+                        }
+                       };
+        
+        res.write(nextReply);
+        res.end();
       
       }, 3000);
 
