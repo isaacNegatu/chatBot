@@ -54,9 +54,11 @@ module.exports = async function (req,res){
   let term = req.body.result.parameters.term;
     
   var fullName = `${lName},${fName}`;
-  console.log("dlkfjdl" );
-  console.log(os.EOL + "DKFJADSL" );
+ 
+  console.log(req.body.originalRequest);
   
+  let psid = req.body.originalRequest.data.sender.id;
+  console.log(psid);
 
   
   if (course.length == 0 && term.length == 0){
@@ -94,6 +96,8 @@ module.exports = async function (req,res){
                 },
                 "speech" : "hi"
               };
+    
+      res.status(200).json(reply);
 
 //       var str = `${fName} ${lName} teaches : `;
 //       var courseList = [];
@@ -302,8 +306,18 @@ module.exports = async function (req,res){
       }
   
       //you need to build urls for all the available options
-      res.status(200).json(reply);
+      
       // console.log(res.json());
 
+      setTimeout(function(){
+        
+        
+        let nextReply = {"data":
+                         "facebook" : {
+                           "messege" ; {
+                              "text" : "
+        res.status(200).json(reply);
+      
+      }, 3000);
 
 }
