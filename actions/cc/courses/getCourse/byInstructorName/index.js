@@ -8,9 +8,10 @@ let os = require("os");
 
 
 
-function quickReply(n){
+function getCurrentSemester(n){
   let currentDate = new Date();
   let semester = "";
+  let nextSemester = "";
     
   let fallSemesterSafeZone = new Date (`August 15 ${currentDate.getFullYear()}`);
   let nextYear = currentDate.getFullYear();
@@ -25,6 +26,7 @@ function quickReply(n){
   
   if(currentDate > fallStartDate && currentDate <= springStartDate){
     semester = "fall";
+    
   }else if (currentDate > springStartDate && currentDate <= summerStartDate){
     semester = "spring";
   }else{
@@ -50,6 +52,8 @@ module.exports = async function (req,res){
   let term = req.body.result.parameters.term;
     
   var fullName = `${lName},${fName}`;
+  
+  let semesters = getCurrentSemester();
 
 
   
@@ -57,17 +61,14 @@ module.exports = async function (req,res){
     
      let cd = "";
         
-    getCourse(fName, lName).then(c => {cd = c; console.log(cd)});
-    
-    console.log(cd + "something" );
+    getCourse(fName, lName, getCurrentSemester() )
+      .then(c => {
       
-      
-    
-     reply = {"data" : 
+      reply = {"data" : 
                {
                 "facebook" : {
                   
-                    "text": `pick a semseter` ,
+                    "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in other semesters?` ,
                     "quick_replies":[
                       {
                         "content_type":"text",
@@ -95,6 +96,15 @@ module.exports = async function (req,res){
                 },
                 "speech" : "hi"
               };
+    
+      res.status(200).json(reply);
+    });
+    
+    console.log(cd + "something" );
+      
+      
+    
+     
 
 //       var str = `${fName} ${lName} teaches : `;
 //       var courseList = [];
@@ -303,7 +313,6 @@ module.exports = async function (req,res){
       }
   
       //you need to build urls for all the available options
-      res.status(200).json(reply);
       // console.log(res.json());
 
 
