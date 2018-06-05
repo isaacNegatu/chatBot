@@ -63,6 +63,7 @@ module.exports = async function (req,res){
                {
                 "facebook" : {
                     "text":"Pick a Semester:",
+                    "text": "something else",
                     "quick_replies":[
                       {
                         "content_type":"text",
@@ -88,8 +89,21 @@ module.exports = async function (req,res){
                   }
 
               },
-               "speech" : "hi"
-            };
+                  "speech": "",
+                  "messages": [
+                  {
+                  "type": 0,
+                  "speech": "my first response"
+                  },
+                  {
+                  "type": 0,
+                  "speech": "my second response"
+                  }
+                  ],
+                  "source": "sourcename"
+                  
+                };
+
 //       var str = `${fName} ${lName} teaches : `;
 //       var courseList = [];
 
