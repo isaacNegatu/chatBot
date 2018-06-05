@@ -30,7 +30,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
               if(!course ){
                 courseList.push(d);
               }
-              console.log(d.title);
+              //console.log(d.title);
 
             });
           })
@@ -48,7 +48,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
               
               let termFromDB = co.semester.split(' ')[0];
             
-              if(term == termFromDB){
+              if(true){
                 str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
                 flag = true;
               }
@@ -57,7 +57,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
           if(flag){
             
             var realStr = str.substr(0,str.length-2);
-            reply = `${realStr} .`;
+            reply = `${realStr}.`;
           }else{
             reply = `${fName} ${lName} doesn't have a schedule in the ${term}`;
           }

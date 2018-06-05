@@ -55,9 +55,11 @@ module.exports = async function (req,res){
   
   if (course.length == 0 && term.length == 0){
     
-     let course = getCourse(fName, lName);
+     let cd = "";
+        
+    getCourse(fName, lName).then(c => {cd = c; console.log(cd)});
     
-    console.log(course + "ladjsflkjsadlfjlasdjf" );
+    console.log(cd + "something" );
       
       
     
