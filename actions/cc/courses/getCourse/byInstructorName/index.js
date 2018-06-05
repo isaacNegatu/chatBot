@@ -54,8 +54,8 @@ module.exports = async function (req,res){
   let term = req.body.result.parameters.term;
     
   var fullName = `${lName},${fName}`;
-  
-  console.log(os.EOL);
+  console.log("dlkfjdl" );
+  console.log(os.EOL + "DKFJADSL" );
   
 
   
@@ -66,8 +66,7 @@ module.exports = async function (req,res){
      reply = {"data" : 
                {
                 "facebook" : {
-                    "text":"Pick a Semester:",
-                    "text": "SOMETHING" ,
+                    "text": `pick a semseter` ,
                     "quick_replies":[
                       {
                         "content_type":"text",
