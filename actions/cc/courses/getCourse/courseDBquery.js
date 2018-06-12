@@ -8,7 +8,6 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
   
   let reply = "";
   
-  console.log(fName, lName, term);
   
   let str = `${fName} ${lName} teaches : `;
   let courseList = [];
@@ -17,9 +16,13 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
   let courseNumber = course[1];
   
   var fullName = `${lName},${fName}`;
+  console.log('----------------------------------------------------------------------------------------------------------------------')
   
   
-  if(course == []){   
+  if(!courseSubject){   
+    
+
+    
     await Faculty.findOne({name: fullName}).
             populate("coursesTaught").
             exec().
@@ -52,7 +55,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
 
                 let termFromDB = co.semester.split(' ')[0];
 
-                console.log(termFromDB);
+                
 
                 if(term.toUpperCase() == termFromDB.toUpperCase()){
                   str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
@@ -73,6 +76,8 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
     
       }else{
         
+            console.log('got here instaed');
+        
         await Faculty.findOne({name: fullName}).
           populate("coursesTaught").
           exec().
@@ -87,7 +92,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
               if(!course ){
                 courseList.push(d);
               }
-              console.log(d.title);
+     
 
             });
           })

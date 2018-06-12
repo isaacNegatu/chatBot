@@ -53,7 +53,7 @@ module.exports = async function (req,res){
   let courseNumber = course[1];
   
   
-  let fName = Array.isArray(req.body.result.parameters.fName.isArray() ? req.body.result.parameters.fName[0] : req.body.result.parameters.fName;  
+  let fName = Array.isArray(req.body.result.parameters.fName) ? req.body.result.parameters.fName[0] : req.body.result.parameters.fName;  
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
     
@@ -72,6 +72,7 @@ module.exports = async function (req,res){
   
   if (course.length == 0 && term.length == 0){
     
+    console.log('-----------------------------------------------------------------------------------------------------------------------');
         
     getCourse(fName, lName, queryTerm)
       .then(c => {
@@ -97,7 +98,7 @@ module.exports = async function (req,res){
                     }
 
                   },
-                  "speech" : "hi"
+                  "speech" : `${c}`
                 };
 
         res.status(200).json(reply);
@@ -111,25 +112,11 @@ module.exports = async function (req,res){
           reply = {"data" : 
                    {
                     "facebook" : {
-
-                        "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in the ${nextSemester}?` ,
-                        "quick_replies":[
-                          {
-                            "content_type":"text",
-                            "title":"Yes",
-                            "payload":`${fName} ${lName} ${nextSemester}`
-                          },
-                          {
-                            "content_type":"text",
-                            "title":"No",
-                            "payload":`EndConversation`
-                          }
-
-                        ]
+                        "text": `${c}`
                       }
 
                     },
-                    "speech" : "hi"
+                    "speech" : `${c}`
                   };
 
           res.status(200).json(reply);
@@ -142,9 +129,9 @@ module.exports = async function (req,res){
         getCourse(fName, lName, queryTerm, course)
           .then(c => {
           
-          console.log('-----------------------------------------------------------------------------------------------------------------------');
           
-          let text = 
+          
+          let quick_replies = queryTerm == nextSemester ? '' : 
 
           reply = {"data" : 
                    {
@@ -167,129 +154,13 @@ module.exports = async function (req,res){
                       }
 
                     },
-                    "speech" : "hi"
+                    "speech" : `${c}`
                   };
 
           res.status(200).json(reply);
         });
         
-        
-        
-//         var str = `${fName} ${lName} teaches : `;
-//         var courseList = [];
-
-//         await Faculty.findOne({name: fullName}).
-//           populate("coursesTaught").
-//           exec().
-//           then(c => {
-
-//            c.coursesTaught.forEach(function (d){
-              
-//               let course = courseList.find(function (co){
-//                 return co == d.courseID;
-//               });
-
-//               if(!course ){
-//                 courseList.push(d);
-//               }
-//               console.log(d.title);
-
-//             });
-//           })
-//           .then(function (){
-          
-//             let flag = false;
-          
-//             courseList.forEach(function (co){
-//               let sub = co.subject;
-//               let num = co.number;
-//               let sec = co.section;
-//               let tit = co.title;
-//               let days = co.meetingDetails.days;
-//               let time = co.meetingDetails.time;
-              
-//               let termFromDB = co.semester.split(' ')[0];
-            
-//               if(term == termFromDB && sub == course[0] && num == course[1]){
-//                 str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
-//                 flag = true;
-//               }
-//             })
-          
-//           if(flag){
-            
-//             var realStr = str.substr(0,str.length-2);
-//             reply = {'speech' : realStr  + "."};
-//           }else{
-//             reply = {'speech' : `${fName} ${lName} doesn't have a schedule in the ${term}`};
-//           }
-
-//           })
-//           .catch(err => console.log(err));
 
         
-      }else if (course != "" && term == ""){
-        console.log('got here');
-        
-//         var str = `${fName} ${lName} teaches : `;
-//         var courseList = [];
-        
-
-//         await Faculty.findOne({name: fullName}).
-//           populate("coursesTaught").
-//           exec().
-//           then(c => {
-
-//            c.coursesTaught.forEach(function (d){
-              
-//               let course = courseList.find(function (co){
-//                 return co == d.courseID;
-//               });
-
-//               if(!course ){
-//                 courseList.push(d);
-//               }
-//               console.log(d.title , d.subject, d.number, d.section);
-
-//             });
-//           })
-//           .then(function (){
-          
-//             let flag = false;
-          
-//             courseList.forEach(function (co){
-//               let sub = co.subject;
-//               let num = co.number;
-//               let sec = co.section;
-//               let tit = co.title;
-//               let days = co.meetingDetails.days;
-//               let time = co.meetingDetails.time;
-              
-//               let termFromDB = co.semester.split(' ')[0];
-            
-//               if(sub == course[0] && num == course[1]){
-//                 str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
-//                 flag = true;
-//               }
-//             })
-          
-//           if(flag){
-            
-//             var realStr = str.substr(0,str.length-2);
-//             reply = {'speech' : realStr  + "."};
-//           }else{
-//             reply = {'speech' : `${fName} ${lName} doesn't teach ${course[0]}-${course[1]}`};
-//           }
-
-//           })
-//           .catch(err => console.log(err));
-
-        
-//       }
-//   res.status(200).json(reply);
-  
-      //you need to build urls for all the available options
-      // console.log(res.json());
-
       }
 }
