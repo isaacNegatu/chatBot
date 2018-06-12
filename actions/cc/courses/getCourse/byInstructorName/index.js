@@ -53,10 +53,11 @@ module.exports = async function (req,res){
   let courseNumber = course[1];
   
   
-  let fName = Array.isArray(req.body.result.parameters.fName) ? req.body.result.parameters.fName[0] : req.body.result.parameters.fName;  
+  let fName = req.body.result.parameters.fName; 
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
     
+  //database format
   var fullName = `${lName},${fName}`;
   
   let semesters = getCurrentSemester();
