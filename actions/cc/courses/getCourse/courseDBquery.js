@@ -4,7 +4,7 @@ let Faculty = require("../../../../model/facultyStaffTest");
 
 
 
-module.exports = async function (fName = "" , lName = "" , term = "", course = "") {
+module.exports = async function (fName = "" , lName = "" , term = "", course = []) {
   
   let reply = "";
   
@@ -17,7 +17,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = "
   var fullName = `${lName},${fName}`;
   
   
-  if(course == ""){   
+  if(course == []){   
     await Faculty.findOne({name: fullName}).
             populate("coursesTaught").
             exec().

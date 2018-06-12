@@ -49,6 +49,10 @@ module.exports = async function (req,res){
   
   
   let course = (req.body.result.parameters.courses) ? req.body.result.parameters.courses.split('-'): "";
+  let courseSubject = course[0];
+  let courseNumber = course[1];
+  
+  
   let fName = req.body.result.parameters.fName;  
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
@@ -72,77 +76,33 @@ module.exports = async function (req,res){
     getCourse(fName, lName, queryTerm)
       .then(c => {
       
-      reply = {"data" : 
-               {
-                "facebook" : {
-                  
-                    "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in the ${nextSemester}?` ,
-                    "quick_replies":[
-                      {
-                        "content_type":"text",
-                        "title":"Yes",
-                        "payload":`${fName} ${lName} ${nextSemester}`
-                      },
-                      {
-                        "content_type":"text",
-                        "title":"No",
-                        "payload":`EndConversation`
-                      }
-                      
-                    ]
-                  }
+        reply = {"data" : 
+                 {
+                  "facebook" : {
 
-                },
-                "speech" : "hi"
-              };
-    
-      res.status(200).json(reply);
-    });
-    
-      
-      
-    
-     
+                      "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in the ${nextSemester}?` ,
+                      "quick_replies":[
+                        {
+                          "content_type":"text",
+                          "title":"Yes",
+                          "payload":`${fName} ${lName} ${nextSemester}`
+                        },
+                        {
+                          "content_type":"text",
+                          "title":"No",
+                          "payload":`EndConversation`
+                        }
 
-//       var str = `${fName} ${lName} teaches : `;
-//       var courseList = [];
+                      ]
+                    }
 
-//       await Faculty.findOne({name: fullName}).
-//               populate("coursesTaught").
-//               exec().
-//               then(c => {
-                 
-//                c.coursesTaught.forEach(function (d){
-                 
-                 
-//                   let course = courseList.find(function (co){
-//                     return co == d.courseID;
-//                   });
+                  },
+                  "speech" : "hi"
+                };
 
-//                   if(!course){
-//                     courseList.push(d);
-//                   }
-//                   console.log(d.title);
+        res.status(200).json(reply);
+      });
 
-//                 });
-//               })
-//               .then(function (){
-//                 courseList.forEach(function (co){
-//                   let sub = co.subject;
-//                   let num = co.number;
-//                   let sec = co.section;
-//                   let tit = co.title;
-//                   let days = co.meetingDetails.days;
-//                   let time = co.meetingDetails.time;
-//                   let termFromDB = co.semester.split(' ')[0];
-                  
-//                   str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} ,`;      
-//                 })
-//                 var realStr = str.substr(0,str.length-2);
-//                 reply = {'speech' : realStr  + "."};
-
-//               })
-//               .catch(err => console.log(err));
       }else if (course == "" && term != ""){
         
         getCourse(fName, lName, queryTerm)
@@ -178,6 +138,38 @@ module.exports = async function (req,res){
        
 
       }else if (course != "" && term != ""){
+
+        getCourse(fName, lName, queryTerm, course)
+          .then(c => {
+
+          reply = {"data" : 
+                   {
+                    "facebook" : {
+
+                        "text": `${c} ${os.EOL} ${os.EOL} Would you like to check if ${fName} teaches ${courseSubject} ${courseNumber} in the ${nextSemester}?` ,
+                        "quick_replies":[
+                          {
+                            "content_type":"text",
+                            "title":"Yes",
+                            "payload":`${fName} ${lName} ${nextSemester} ${courseSubject-courseNumber}`
+                          },
+                          {
+                            "content_type":"text",
+                            "title":"No",
+                            "payload":`EndConversation`
+                          }
+
+                        ]
+                      }
+
+                    },
+                    "speech" : "hi"
+                  };
+
+          res.status(200).json(reply);
+        });
+        
+        
         
         var str = `${fName} ${lName} teaches : `;
         var courseList = [];
@@ -237,7 +229,6 @@ module.exports = async function (req,res){
         var str = `${fName} ${lName} teaches : `;
         var courseList = [];
         
-        console.log('kfjdljflkasdjflkjalskdjflkasdjflkjdslkfjslkdjflksdjflkjsdlkfjsldkfjsdfj');
 
         await Faculty.findOne({name: fullName}).
           populate("coursesTaught").
