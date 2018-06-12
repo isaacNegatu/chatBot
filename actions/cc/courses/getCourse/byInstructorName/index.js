@@ -99,7 +99,7 @@ module.exports = async function (req,res){
                     }
 
                   },
-                  "speech" : `${c}`
+                  "speech" : `${c} <a href = "google.com" > google </a>`
                 };
 
         res.status(200).json(reply);
