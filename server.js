@@ -46,6 +46,8 @@ app.get("/action", function(req, res){
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
   
+  console.log(req.body);
+  
     
   if(req.body.originalRequest){
    questionHandler(req);

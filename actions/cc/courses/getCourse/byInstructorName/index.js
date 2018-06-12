@@ -87,7 +87,7 @@ module.exports = async function (req,res){
                       {
                         "content_type":"text",
                         "title":"No",
-                        "payload":`endConversation`
+                        "payload":`EndConversation`
                       }
                       
                     ]
