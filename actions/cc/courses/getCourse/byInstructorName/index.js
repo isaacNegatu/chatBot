@@ -131,7 +131,7 @@ module.exports = async function (req,res){
           
           
           
-          let quick_replies = queryTerm == nextSemester ? '' : 
+          let text = queryTerm.toUpperCase() == nextSemester.toUpperCase() ? `${c}` : 
 
           reply = {"data" : 
                    {
