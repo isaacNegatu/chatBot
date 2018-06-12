@@ -236,6 +236,8 @@ module.exports = async function (req,res){
         
         var str = `${fName} ${lName} teaches : `;
         var courseList = [];
+        
+        console.log('kfjdljflkasdjflkjalskdjflkasdjflkjdslkfjslkdjflksdjflkjsdlkfjsldkfjsdfj');
 
         await Faculty.findOne({name: fullName}).
           populate("coursesTaught").
@@ -288,6 +290,7 @@ module.exports = async function (req,res){
 
         
       }
+  res.status(200).json(reply);
   
       //you need to build urls for all the available options
       // console.log(res.json());
