@@ -129,33 +129,45 @@ module.exports = async function (req,res){
         getCourse(fName, lName, queryTerm, course)
           .then(c => {
           
-          
-          
-          let text = queryTerm.toUpperCase() == nextSemester.toUpperCase() ? `${c}` : 
+            if(queryTerm.toUpperCase() == nextSemester.toUpperCase()){
+               reply = {"data" : 
+                     {
+                      "facebook" : {
 
-          reply = {"data" : 
-                   {
-                    "facebook" : {
+                          "text": `${c}`  ,
+                        }
 
-                        "text": `${c} ${os.EOL} ${os.EOL} Would you like to check if ${fName} teaches ${courseSubject} ${courseNumber} in the ${nextSemester}?` ,
-                        "quick_replies":[
-                          {
-                            "content_type":"text",
-                            "title":"Yes",
-                            "payload":`${fName} ${lName} ${nextSemester} ${courseSubject}-${courseNumber}`
-                          },
-                          {
-                            "content_type":"text",
-                            "title":"No",
-                            "payload":`EndConversation`
-                          }
+                      },
+                      "speech" : `${c}`
+                    };
 
-                        ]
-                      }
+            }else{
+              reply = {"data" : 
+                     {
+                      "facebook" : {
 
-                    },
-                    "speech" : `${c}`
-                  };
+                          "text":`${c} ${os.EOL} ${os.EOL} Would you like to check if ${fName} teaches ${courseSubject} ${courseNumber} in the ${nextSemester}?`,
+                          "quick_replies": [
+                            {
+                              "content_type":"text",
+                              "title":"Yes",
+                              "payload":`${fName} ${lName} ${nextSemester} ${courseSubject}-${courseNumber}`
+                            },
+                            {
+                              "content_type":"text",
+                              "title":"No",
+                              "payload":`EndConversation`
+                            }
+
+                          ]
+                        }
+
+                      },
+                      "speech" : `${c}`
+                    };
+            }
+
+         
 
           res.status(200).json(reply);
         });
