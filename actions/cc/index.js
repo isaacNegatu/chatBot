@@ -1,4 +1,4 @@
-let courseHandler = require('./courses');
+let courseHandler = require('./courses');    //courses action handler
 
 module.exports = function(req, res) {
   let action = req.body.result.action;

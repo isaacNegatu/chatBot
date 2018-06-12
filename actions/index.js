@@ -1,12 +1,13 @@
 
 let msHandler = require("./ms");
-let ccHandler = require("./cc");
+let ccHandler = require("./cc");      //century action handler
 
 
 
 module.exports = function(req, res) {
   let action = req.body.result.action;
-  console.log("got to actions");
+  
+  
   // Test actions:
   if (action.startsWith('cc')) {
     

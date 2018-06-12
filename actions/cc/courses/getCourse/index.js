@@ -1,5 +1,5 @@
-let courseIDHandler = require('./byCourseID');
-let courseInstructorHandler = require('./byInstructorName');
+let courseIDHandler = require('./byCourseID');                      //get courses in by course Id
+let courseInstructorHandler = require('./byInstructorName');        //get courses by the name of the instructor
 
 module.exports = function(req, res) {
   

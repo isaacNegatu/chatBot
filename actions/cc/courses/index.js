@@ -1,4 +1,4 @@
-let getCourse = require('./getCourse');
+let getCourse = require('./getCourse');   
 
 module.exports = function(req, res) {
   let action = req.body.result.action;

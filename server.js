@@ -56,7 +56,7 @@ app.post("/action", function (req, res) {
    messages.insert({question: req.body.result.resolvedQuery});
   }
   
-  /
+  //handle The requests
   actionHandler(req, res);
   
 });
