@@ -53,7 +53,7 @@ module.exports = async function (req,res){
   let courseNumber = course[1];
   
   
-  let fName = req.body.result.parameters.fName;  
+  let fName = Array.isArray(req.body.result.parameters.fName.isArray() ? req.body.result.parameters.fName[0] : req.body.result.parameters.fName;  
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
     
@@ -80,7 +80,7 @@ module.exports = async function (req,res){
                  {
                   "facebook" : {
 
-                      "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in the ${nextSemester}?` ,
+                      "text": `${c} ${os.EOL} ${os.EOL} Would you like to see what ${fName} teaches in the ${nextSemester}?`,
                       "quick_replies":[
                         {
                           "content_type":"text",
@@ -144,7 +144,7 @@ module.exports = async function (req,res){
           
           console.log('-----------------------------------------------------------------------------------------------------------------------');
           
-          console.log(c);
+          let text = 
 
           reply = {"data" : 
                    {
