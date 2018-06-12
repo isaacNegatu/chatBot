@@ -54,6 +54,7 @@ app.post("/action", function (req, res) {
   }else{
    messages.insert({question: req.body.result.resolvedQuery});
   }
+  
   // Save message in database
   actionHandler(req, res);
   
