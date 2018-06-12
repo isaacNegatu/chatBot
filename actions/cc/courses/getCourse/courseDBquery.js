@@ -22,7 +22,6 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
   
   //full name of the instructor | for DB query purposes
   var fullName = `${lName},${fName}`;
-  console.log('----------------------------------------------------------------------------------------------------------------------')
   
   
   //course is not part of the query
@@ -118,7 +117,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
               
               let termFromDB = co.semester.split(' ')[0];
             
-              //populate string of courses taught in the requested term and c
+              //populate string of courses taught in the requested term and course
               if(term == termFromDB && sub == course[0] && num == course[1]){
                 str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
                 flag = true;
@@ -140,6 +139,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
         
       }
         
+        //return the reply
         return reply;
   
 };

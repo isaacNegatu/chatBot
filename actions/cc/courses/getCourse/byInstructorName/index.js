@@ -1,13 +1,11 @@
-let connection = require("../../../../../connection"); 
-let Course = require("../../../../../model/course");
-let Faculty = require("../../../../../model/facultyStaffTest");
-let getCourse = require("../courseDBquery");
-let os = require("os");
+let getCourse = require("../courseDBquery");     //custom module to query db
+let os = require("os");                          //use for link breaks in platform replies
 
 
 
 
 
+//This function will return the current and next semester
 function getCurrentSemester(n){
   let currentDate = new Date();
   let semester = "";
@@ -44,10 +42,12 @@ function getCurrentSemester(n){
 
 module.exports = async function (req,res){
  
+  //default reply
   let reply = {'speech' : "The teacher doesn't exist"}; 
   
   
-  
+  //course is a string which is expected in a form of 'CSCI-2082' 
+  //then is splitted to subject and course number
   let course = (req.body.result.parameters.courses) ? req.body.result.parameters.courses.split('-'): "";
   let courseSubject = course[0];
   let courseNumber = course[1];
