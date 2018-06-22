@@ -56,6 +56,7 @@ app.post("/action", function (req, res) {
   //store questions in the database
   if(req.body.originalRequest){    //if the question is coming from a platfrom other than Dialog Flow
    questionHandler(req);
+   
   }else{                           //if its coming from Dialg Flow
    messages.insert({question: req.body.result.resolvedQuery});
   }

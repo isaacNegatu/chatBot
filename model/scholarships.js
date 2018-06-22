@@ -4,7 +4,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-var scholarshipsSchema = new Schema({
+let scholarshipsSchema = new Schema({
   _id: Schema.Types.ObjectId,
   
   information: String,
