@@ -6,7 +6,6 @@ var question = "";
 
 
 module.exports = function (req){ 
-  console.log(req.body);
   let getRequestInfo = function() {
       return new Promise(function(resolve, reject) {
         platform = req.body.originalRequest.source;

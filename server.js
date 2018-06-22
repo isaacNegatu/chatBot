@@ -47,7 +47,9 @@ app.get("/action", function(req, res){
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
-    
+  
+  
+  console.log(req.body.originalRequest);
   
   //store questions in the database
   if(req.body.originalRequest){    //if the question is coming from a platfrom other than Dialog Flow
