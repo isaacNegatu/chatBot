@@ -16,6 +16,7 @@ let messages = db.get('questions');
 
 let actionHandler = require('./actions');
 let questionHandler = require('./question');
+let userHandler = require('./users');
 
 // Use bodyParser to handle json
 app.use(bodyParser.json());
@@ -56,7 +57,7 @@ app.post("/action", function (req, res) {
   //store questions in the database
   if(req.body.originalRequest){    //if the question is coming from a platfrom other than Dialog Flow
    questionHandler(req);
-   
+   userHandler(req);
   }else{                           //if its coming from Dialg Flow
    messages.insert({question: req.body.result.resolvedQuery});
   }
