@@ -13,11 +13,18 @@ module.exports = (req) =>{
 
   }
   
+  let searchIfExists = ()=>{
+    
+    
+    
+    
+  }
+  
   
   getUserInfo()
   .then(()=>{
     
-    let newUser 
+    let newUser = new User
   
   });
   
