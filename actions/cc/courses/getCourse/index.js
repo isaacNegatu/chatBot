@@ -1,7 +1,10 @@
 /*
   pots dialogflow request action cc.getCourse.*
   
-    
+    if cc.gC.byCourseID
+      request sent to ./byCourseID.js
+    if cc.gC.byInstructorName
+      request passed to ./byInstructorName.js
 */
 
 let courseIDHandler = require('./byCourseID');                      

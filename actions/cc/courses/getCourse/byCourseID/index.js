@@ -1,6 +1,6 @@
-let connection = require("../../../../../connection");  // import ./connection.js file
-let Course = require("../../../../../model/course");    // import ./model/course.js file
-let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model/facultyStaffTest file
+let connection = require("../../../../../connection");  // import /connection.js file
+let Course = require("../../../../../model/course");    // import /model/course.js file
+let Faculty = require("../../../../../model/facultyStaffTest"); // import /model/facultyStaffTest file
 
 /*
   anonymous async function (req, res)

@@ -114,10 +114,21 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
             //push all course to the courseList array
            c.coursesTaught.forEach(function (d){
               
+             
+             /**
+               
+             ***NOTE -> Code below is a saftey check for unconsistent data in the DB
+
+             **/
+             
+             
+             //try to find the courses in the courseList array initialized above
               let course = courseList.find(function (co){
                 return co == d.courseID;
               });
 
+             
+              //
               if(!course ){
                 courseList.push(d);
               }
