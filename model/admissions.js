@@ -1,5 +1,29 @@
 /*
 
+  admissions:
+    fist time student - not in college system, not transfer, non-international
+    transfer student - transfer from another college, non-international
+    international student - out of country student 
+    returning student - in college system, not transfer, non-international
+    high-school option - high-school credit option
+    
+      oritentationTimes - describes orientation information
+        date - String: date of orientation
+        time - String: time of orientation
+        
+      afterAcceptance - extra information section
+        description - String: extra general information/ misc. data
+        
+      stepsToApply - other steps required
+        description - String: general information about extra steps
+        sumbittingTranscripts - String: information specific to submitting transcripts
+        applicationLink - String: hyperlink to specific student application information/ link to specific application
+        
+      contactInformation - student contact information
+        phone - String: phone number (required)
+        fax - String: fax number if exists
+        //General Email - String: contact email
+
 */
 
 // catches unsafe action and throws error

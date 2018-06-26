@@ -1,3 +1,13 @@
+/**
+
+  This is a sample code that can be used to reference
+  retrieving and updating data
+  
+  *** NOTE - the mognodb uri used in this file isn't the same as the development uri ***
+
+
+*/
+
 
 let mongoose = require("mongoose");
 var Course = require("./model/course");
