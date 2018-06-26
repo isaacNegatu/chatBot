@@ -2,7 +2,21 @@ let connection = require("../../../../../connection");  // import ./connection.j
 let Course = require("../../../../../model/course");    // import ./model/course.js file
 let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model/facultyStaffTest file
 
+/*
+  anonymous async function (req, res)
+    req: JSON - request, POST from client (Dialogflow)
+    res: JSON - response, POST to client (Dialogflow)
+  
+  @Precondition -- 
+    
+    
+  gets Dialogflow request
+  
+  does something
+  
+  appends respose with response JSON
 
+*/
 module.exports = async function (req, res){
   let reply = {'speech' : "The course doesn't exist"};  
   
