@@ -13,9 +13,34 @@ let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model
     gets 'course' from request JSON / req.body.result.parameters.courses
     (optional) gets 'term' from request JSON / req.body.result.parameters.term
   
-  if term exists:
-    get Course (mongoose model for mongoDB access)
-      @param 
+  reply : JSON object to be responded with
+  
+  if term does not exists:
+    Course.find(JSON {subject: subject, number: courseNumber}) // mongoose model for mongoDB access
+      @param subject : String - subject name
+      @param courseNumber : String - course number
+      
+      if searched course doesn't exist:
+        reply = 'doesn't exist'
+        
+      else:
+        for all Course:
+          reply += course values
+          
+  else:
+    Course.find(JSON {subject: subject, number: courseNumber}) // mongoose model for mongoDB access
+      @param subject : String - subject name
+      @param courseNumber : String - course number
+      
+      if searched course doesn't exist:
+        reply = 'doesn't exist'
+        
+      else:
+        for all Course:
+          reply += course values
+    
+      
+      
   
   
   
@@ -30,13 +55,16 @@ module.exports = async function (req, res){
   console.log('got to course Id stuff');
   
   let course = req.body.result.parameters.courses.split('-');
+  let subject = course[0];
+  let courseNumber = course[1];
+  
   let term = req.body.result.parameters.term;
 
   if(term.length == 0){
     let courseList = [];
     let str = '';
    
-    await Course.find({ subject : course[0] , number : course[1] }, function(err, docs){
+    await Course.find({ subject : subject , number : courseNumber }, function(err, docs){
       
       if (!docs.length){
         reply = {'speech' : 'Course not Found' };
@@ -65,7 +93,7 @@ module.exports = async function (req, res){
       let courseList = [];
       let str = '';
       let qTerm = term + ' 2018';
-      await Course.find({ subject : course[0] , number : course[1] , semester: qTerm}, function(err, docs){
+      await Course.find({ subject : subject , number : courseNumber, semester: qTerm}, function(err, docs){
 
         if (!docs.length){
           reply = {'speech' : 'Course not Found' };
