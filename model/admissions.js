@@ -23,6 +23,22 @@
         phone - String: phone number (required)
         fax - String: fax number if exists
         //General Email - String: contact email
+        
+      creditTransferPolicy - String: credit policy applied to specific transfer student
+      
+      careerAndTechnicalEducationCredit: {
+        requirments: String - student requirements to participation
+        procedures: String - procedure requirements/ actiions for participation
+        praticipatingHighSchools: [] - array of high-schools that can participate at location
+          schoolName: String  
+    
+      PSEO - Post Secondary Enrollment Opportunities / high-school specific education opportunity
+        stepsToApply: String - individual information on applying
+        documents: - documents pertaining to student participation
+          documentName: String - name of document
+          documentLink: String - link to document
+        parentResources: - recources specific to parents/guardians
+          resource: String - recource name and information
 
 */
 

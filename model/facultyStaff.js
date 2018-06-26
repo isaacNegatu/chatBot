@@ -1,4 +1,5 @@
 
+// catches unsafe action and throws error
 'use strict';
 
 // for mongoDB connection

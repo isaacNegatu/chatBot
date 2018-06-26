@@ -33,18 +33,29 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
             populate("coursesTaught").
             exec().
             then(c => {
-
-            
+             // c --> all the courses taught by the queried instructor
+      
              //push all course to the courseList array
+        
              c.coursesTaught.forEach(function (d){
+               
+               /**
+               
+               ***NOTE -> Code below is a saftey check for unconsistent data in the DB
+               
+               **/
+               
 
+                //try to find the courses in the courseList array initialized above
                 let course = courseList.find(function (co){
                   return co == d.courseID;
                 });
 
+                //if the course doesn't exist alreay, add it to the array
                 if(!course ){
                   courseList.push(d);
                 }
+               
 
               });
             })
@@ -52,7 +63,11 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
 
               let flag = false;
               
+              //append all the courses to a string which is going to be replied to the user
               courseList.forEach(function (co){
+                //course -> each course
+                
+                //get all the information about the current course
                 let sub = co.subject;
                 let num = co.number;
                 let sec = co.section;
@@ -60,6 +75,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
                 let days = co.meetingDetails.days;
                 let time = co.meetingDetails.time;
 
+                //term in the DB is in the form of 'Summer 2018' so the following code gets the term only
                 let termFromDB = co.semester.split(' ')[0];
 
                 
@@ -68,9 +84,13 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
                   str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
                   flag = true;
                 }
-              })
-
+              });
+      
+      
+            //flag is used to make sure the string isn't empty
             if(flag){
+              
+              
 
               var realStr = str.substr(0,str.length-2);
               reply = `${realStr}.`;
@@ -81,7 +101,8 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
             })
             .catch(err => console.log(err));
     
-      }else{
+      }else{   //If course is part of the query
+        
         
         //find the instructor from the DB then populate all courses taught by the instrucotr
         await Faculty.findOne({name: fullName}).

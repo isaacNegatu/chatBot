@@ -1,6 +1,6 @@
-let connection = require("../../../../../connection"); 
-let Course = require("../../../../../model/course");
-let Faculty = require("../../../../../model/facultyStaffTest");
+let connection = require("../../../../../connection");  // import ./connection.js file
+let Course = require("../../../../../model/course");    // import ./model/course.js file
+let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model/facultyStaffTest file
 
 
 module.exports = async function (req, res){
