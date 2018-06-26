@@ -1,3 +1,9 @@
+/*
+  pots dialogflow request action cc.getCourse.*
+  
+    
+*/
+
 let courseIDHandler = require('./byCourseID');                      
 let courseInstructorHandler = require('./byInstructorName');        
 

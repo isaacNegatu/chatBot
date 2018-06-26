@@ -109,8 +109,9 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
           populate("coursesTaught").
           exec().
           then(c => {
-            
-          //push all course to the courseList array
+            // c --> all the courses taught by the queried instructor
+      
+            //push all course to the courseList array
            c.coursesTaught.forEach(function (d){
               
               let course = courseList.find(function (co){

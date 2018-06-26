@@ -16,9 +16,12 @@ let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model
   reply : JSON object to be responded with
   
   if term does not exists:
-    Course.find(JSON {subject: subject, number: courseNumber}) // mongoose model for mongoDB access
-      @param subject : String - subject name
-      @param courseNumber : String - course number
+    Course.find(JSON {subject: subject, number: courseNumber}, anonCallback) // mongoose model for mongoDB access
+      @param JSON {
+              subject : String - subject name
+              number : String - course number
+              semester : String - term
+            }
       
       if searched course doesn't exist:
         reply = 'doesn't exist'
@@ -28,9 +31,12 @@ let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model
           reply += course values
           
   else:
-    Course.find(JSON {subject: subject, number: courseNumber}) // mongoose model for mongoDB access
-      @param subject : String - subject name
-      @param courseNumber : String - course number
+    Course.find(JSON {subject: subject, number: courseNumber, semester: qTerm}, anonCallback) // mongoose model for mongoDB access
+      @param JSON {
+              subject : String - subject name
+              number : String - course number
+              semester : String - term
+            }
       
       if searched course doesn't exist:
         reply = 'doesn't exist'
@@ -38,15 +44,12 @@ let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model
       else:
         for all Course:
           reply += course values
-    
-      
-      
-  
-  
   
   appends respose with response JSON
 
 */
+
+
 module.exports = async function (req, res){
   let reply = {'speech' : "The course doesn't exist"};  
   
