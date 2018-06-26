@@ -4,15 +4,20 @@ let Faculty = require("../../../../../model/facultyStaffTest"); //import ./model
 
 /*
   anonymous async function (req, res)
-    req: JSON - request, POST from client (Dialogflow)
-    res: JSON - response, POST to client (Dialogflow)
+    @param req : JSON - request, POST from client (Dialogflow)
+    @param res : JSON - response, POST to client (Dialogflow)
   
-  @Precondition -- 
-    
-    
+  @Precondition -- post request by dialogflow webhook property - action : 'cc.courses.getCourse.byCourseID'
+      
   gets Dialogflow request
+    gets 'course' from request JSON / req.body.result.parameters.courses
+    (optional) gets 'term' from request JSON / req.body.result.parameters.term
   
-  does something
+  if term exists:
+    get Course (mongoose model for mongoDB access)
+      @param 
+  
+  
   
   appends respose with response JSON
 
