@@ -48,9 +48,7 @@ app.get("/action", function(req, res){
 
 // The API endpoint for the requests from Dialog Flow
 app.post("/action", function (req, res) {
-  
-  console.log('EAAFz53l9l9YBAAwHSUqIkqPVpZB56HKNjVS6yrCfTQZBqbkkpnW3t2SF4kvXyiexaszFaOdiYfM2ZBglSgyTHHphRP4dnCirxFTaPBCXIsnt8wtZC0h6G0RtK7liZCyEZCegorTvEb6tRoi4alPFbz9DOqaUITxsfKMRX9V3coz6aOmSflbenJ6eBEsVB8RZBM7gbpAgmkAkDzgdECx0Y3ZALgW8qdsLjTuVmK0rDyUGFwZDZD');
-  
+    
   
   console.log(req.body.originalRequest);
   
