@@ -1,6 +1,8 @@
+// for mongoDB connection
 let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-var CourseSchema = new mongoose.Schema({
+var CourseSchema = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   courseID: Number,
   subject: String,
@@ -37,4 +39,5 @@ var CourseSchema = new mongoose.Schema({
 });
 
 
+// export mongo schema
 module.exports = mongoose.model("Course", CourseSchema);

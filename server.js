@@ -35,6 +35,7 @@ app.get("/", (request, response) => {
 
 //when initializing a messenger bot, you need to verify a token
 //by replying 'hub.challenge' to the request
+// """verified""" is a token used to identify the fb bot
 app.get("/action", function(req, res){
     if (req.query['hub.verify_token'] === 'verified') {
       res.send(req.query['hub.challenge']);
@@ -50,7 +51,7 @@ app.get("/action", function(req, res){
 app.post("/action", function (req, res) {
     
   
-  console.log(req.body.originalRequest);
+  //console.log(req.body.originalRequest);
   
   //store questions in the database
   if(req.body.originalRequest){    //if the question is coming from a platfrom other than Dialog Flow

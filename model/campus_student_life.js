@@ -1,6 +1,7 @@
 
 'use strict'
 
+// for mongoDB connection
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
@@ -21,4 +22,5 @@ var campus_student_lifeschema = new Schema ({
 });
 
 
+// export mongo schema
 module.exports = mongoose.model('CSLIFE', campus_student_lifeschema);

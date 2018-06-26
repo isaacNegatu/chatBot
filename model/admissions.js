@@ -1,6 +1,11 @@
+/*
 
+*/
+
+// catches unsafe action and throws error
 'use strict'
 
+// for mongoDB connection
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
@@ -138,4 +143,5 @@ var admissionsschema = new Schema ({
 });
 
 
+// export mongo schema
 module.exports = mongoose.model('admissions', admissionsschema);

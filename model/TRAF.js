@@ -1,6 +1,15 @@
+/*
+  TRAF - Tuition Reciprocity and Fees
+  
+  !!!! note : Incomplete !!!
+  
+  
+*/
 
+// catches unsafe action and throws error
 'use strict'
 
+// for mongoDB connection
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
@@ -15,4 +24,5 @@ var TRAFschema = new Schema ({
 });
 
 
+// export mongo schema
 module.exports = mongoose.model('TRAF', TRAFschema);

@@ -1,5 +1,6 @@
 'use strict'
 
+// for mongoDB connection
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
@@ -22,4 +23,5 @@ var athleticsschema = new Schema ({
 });
 
 
+// export mongo schema
 module.exports = mongoose.model('athletics', athleticsschema);
