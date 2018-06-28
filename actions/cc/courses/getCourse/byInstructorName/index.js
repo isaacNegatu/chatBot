@@ -39,7 +39,20 @@ let os = require("os");                          //import native module used for
     
     if term is provided, use the provided term, if not use the current term
 
-
+    if course isn't provided:
+      
+      getCourse(fName, lName, queryTerm)
+        @param fName - string - first name got from the request
+        @param lName - string - last name got from the request
+        @param queryTerm - string - the current term of the term provided
+        
+        @return c - string - all the courses appended together
+        
+      after the above function returns the string we append it to the reply 
+      object and format it according to the platform which the request came from
+      
+    else if term is provided and course isn't provided
+      
 
 */
 
@@ -96,8 +109,6 @@ module.exports = async function (req,res){
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
     
-  //database format
-  var fullName = `${lName},${fName}`;
   
   let semesters = getCurrentAndNextSemester();
   
@@ -136,7 +147,7 @@ module.exports = async function (req,res){
                     }
 
                   },
-                  "speech" : `${c} <a href = "google.com" > google </a>`
+                  "speech" : `${c}`
                 };
 
         res.status(200).json(reply);
