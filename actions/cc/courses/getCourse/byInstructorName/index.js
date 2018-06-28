@@ -155,27 +155,44 @@ module.exports = async function (req,res){
   let courseNumber = course[1];
   
   
-  
+  //get first name, last name and term from the request parameters
   let fName = req.body.result.parameters.fName; 
   let lName = req.body.result.parameters.lName; 
   let term = req.body.result.parameters.term;
     
-  
+  //get the current and next semester from the getCurrentAndNextSemester function
   let semesters = getCurrentAndNextSemester();
   
+  //separate the current and next semester
   let currentSemester = semesters[0];
   let nextSemester = semesters[1];
   
+  //if term is provided term will equal the requested term else it'll be set to the
+  //current term
   let queryTerm = (term == "")? currentSemester: term;
   
     
   
+  //if both course and term aren't provided by the user
   if (course.length == 0 && term.length == 0){
     
-    console.log('-----------------------------------------------------------------------------------------------------------------------');
-        
+    //get course function from getcourse module
     getCourse(fName, lName, queryTerm)
       .then(c => {
+        //c -> all the courses returned by the request
+      
+        
+        //data is a dialogflow json key
+      
+        //if request is from facebook, the facebook bot will parse the text and the quick_replies
+        //else string in the speech key will be displayed
+      
+        //courses will be displayed and user will be asked if they want to 
+        //view courses from the next semester
+      
+        
+        //***NOTE*** quick_replies are facebook's json keys not dialogflow's
+      
       
         reply = {"data" : 
                  {
@@ -201,14 +218,20 @@ module.exports = async function (req,res){
                   "speech" : `${c}`
                 };
 
+        //respond with the reply
         res.status(200).json(reply);
       });
 
+    
+      //if term is provided but coures isn't
       }else if (course == "" && term != ""){
         
+        //get course function from getcourse module
         getCourse(fName, lName, queryTerm)
           .then(c => {
-
+          
+          
+              //if query term is equal to the current semeste
               if(queryTerm.toUpperCase() == nextSemester.toUpperCase()){
                reply = {"data" : 
                      {
