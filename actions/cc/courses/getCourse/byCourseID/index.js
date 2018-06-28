@@ -51,28 +51,41 @@ let Faculty = require("../../../../../model/facultyStaffTest"); // import /model
 
 
 module.exports = async function (req, res){
+  //default sppech
   let reply = {'speech' : "The course doesn't exist"};  
   
-  console.log(req.body.result.parameters);
-
-  console.log('got to course Id stuff');
-  
+  //get course
   let course = req.body.result.parameters.courses.split('-');
+  
+  //split course to subject and course number
   let subject = course[0];
   let courseNumber = course[1];
   
+  //get term (optional)
   let term = req.body.result.parameters.term;
 
+  
+  //if term isn't part of the request
   if(term.length == 0){
-    let courseList = [];
-    let str = '';
+    
+    
+    let courseList = [];   //array to hold all the coureses
+    let str = '';          //a string object to be responded to the client
    
+    
+    //Query the database with subject and course number
     await Course.find({ subject : subject , number : courseNumber }, function(err, docs){
+      //docs -> the documents found which fulfuill the query parameters
       
+      //if no document is found
       if (!docs.length){
         reply = {'speech' : 'Course not Found' };
-      }else{
+        
+      }else{   //if document or documents are found
         docs.forEach(function(co){
+          //co -> each course
+          
+          //get all the information about each document
           let sub = co.subject;
           let num = co.number;
           let sec = co.section;
@@ -83,19 +96,27 @@ module.exports = async function (req, res){
           let termFromDB = co.semester;
 
           
+          //append to a string declared above
           str += `${sub}-${num}.${sec} | ${tit} | ${instruct} | ${days} | ${time} | ${termFromDB} , `; 
           
         });
+        
+        //get rid of comma and append a 'period' at the end
         var realStr = str.substr(0,str.length-2);
         reply = {'speech' : realStr  + "."}; 
       }
       
     });
     
+    
+  //if term is part of the request
   }else{
-      let courseList = [];
-      let str = '';
-      let qTerm = term + ' 2018';
+      let courseList = [];    //array to hold all the requests
+      let str = '';           //a string object to be responded to the client
+      let qTerm = term + ' 2018';  //a term query to match the format in the DB
+    
+    
+      //Query the database with subject, course number and term
       await Course.find({ subject : subject , number : courseNumber, semester: qTerm}, function(err, docs){
 
         if (!docs.length){
