@@ -41,7 +41,7 @@ let os = require("os");                          //import native module used for
 
     if course isn't provided:
       
-      getCourse(fName, lName, queryTerm)
+      getCourse(fName, lName, queryTerm):
         @param fName - string - first name got from the request
         @param lName - string - last name got from the request
         @param queryTerm - string - the current term of the term provided
@@ -51,7 +51,34 @@ let os = require("os");                          //import native module used for
       after the above function returns the string we append it to the reply 
       object and format it according to the platform which the request came from
       
-    else if term is provided and course isn't provided
+      for facebook:
+        reply with the info from the current semester and ask if the user would
+        like to view courses from the next semester
+        
+    else if term is provided and course isn't: 
+      getCourse(fName, lName, queryTerm):
+        @param fName - string - first name got from the request
+        @param lName - string - last name got from the request
+        @param queryTerm - string - the current term of the term provided
+        
+        @return c - string - all the courses appended together
+        
+        
+      
+      
+    else if course is provided:
+    
+      getCourse(fName, lName, queryTerm, course):
+        @param fName - string - first name got from the request
+        @param lName - string - last name got from the request
+        @param queryTerm - string - the current term of the term provided
+        @param course - string - the course provided by the user
+        
+        @return c - string - all the courses appended together
+        
+        if the requested term is the same as the next semester:
+          reply with the course taught
+      
       
 
 */
@@ -158,15 +185,43 @@ module.exports = async function (req,res){
         getCourse(fName, lName, queryTerm)
           .then(c => {
 
-          reply = {"data" : 
-                   {
-                    "facebook" : {
-                        "text": `${c}`
-                      }
+              if(queryTerm.toUpperCase() == nextSemester.toUpperCase()){
+               reply = {"data" : 
+                     {
+                      "facebook" : {
 
-                    },
-                    "speech" : `${c}`
-                  };
+                          "text": `${c}`  ,
+                        }
+
+                      },
+                      "speech" : `${c}`
+                    };
+
+            }else{
+              reply = {"data" : 
+                     {
+                      "facebook" : {
+
+                          "text":`${c} ${os.EOL} ${os.EOL} Would you like to check if ${fName} teaches ${courseSubject} ${courseNumber} in the ${nextSemester}?`,
+                          "quick_replies": [
+                            {
+                              "content_type":"text",
+                              "title":"Yes",
+                              "payload":`${fName} ${lName} ${nextSemester} ${courseSubject}-${courseNumber}`
+                            },
+                            {
+                              "content_type":"text",
+                              "title":"No",
+                              "payload":`EndConversation`
+                            }
+
+                          ]
+                        }
+
+                      },
+                      "speech" : `${c}`
+                    };
+            }
 
           res.status(200).json(reply);
         });
