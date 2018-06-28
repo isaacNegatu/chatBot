@@ -15,7 +15,38 @@ let Faculty = require("../../../../model/facultyStaffTest");     //facutly model
     
     reply : string - the final reply
     
-    str : string - used to 
+    courseList : array - used to append all the courses retrieved from the DB
+    
+    if course isn't provided: 
+    
+      Faculty.findOne(JSON {name : fullName} 
+        @params name : String - full name of the instructor
+        
+      after the above query populate the instructor's courses  (mongoose function for retrieving referenced objects)
+      
+      
+      then : after getting all the courses append them to the courseList array
+      
+      then : go through the courseList array and append all the courses corresponding 
+             to the current semester to the reply string
+             
+    else if course is provided: 
+      
+      Faculty.findOne(JSON {name : fullName} 
+        @params name : String - full name of the instructor
+        
+      after the above query populate the instructor's courses  (mongoose function for retrieving referenced objects)
+      
+      
+      then : after getting all the courses append them to the courseList array
+      
+      then : go through the courseList array and append all the courses corresponding 
+             to the current semester AND the couresto the reply string
+            
+      
+      
+    
+    
 
 
 */
