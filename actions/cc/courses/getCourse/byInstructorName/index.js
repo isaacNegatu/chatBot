@@ -176,7 +176,7 @@ module.exports = async function (req,res){
   //if both course and term aren't provided by the user
   if (course.length == 0 && term.length == 0){
     
-    //get course function from getcourse module
+    //pass the parameters to the getCourse module 
     getCourse(fName, lName, queryTerm)
       .then(c => {
         //c -> all the courses returned by the request
@@ -226,25 +226,44 @@ module.exports = async function (req,res){
       //if term is provided but coures isn't
       }else if (course == "" && term != ""){
         
-        //get course function from getcourse module
+        //pass the parameters to the getCourse module 
         getCourse(fName, lName, queryTerm)
           .then(c => {
-          
-          
-              //if query term is equal to the current semeste
-              if(queryTerm.toUpperCase() == nextSemester.toUpperCase()){
-               reply = {"data" : 
-                     {
-                      "facebook" : {
+         //c -> all the courses returned by the request
 
-                          "text": `${c}`  ,
-                        }
 
-                      },
-                      "speech" : `${c}`
-                    };
+          //if query term is equal to the next semester
+          //don't ask the user if they want to view courses
+          //from the next semester
+          if(queryTerm.toUpperCase() == nextSemester.toUpperCase()){
+           reply = {"data" : 
+                 {
+                  "facebook" : {
 
+                      "text": `${c}`  ,
+                    }
+
+                  },
+                  "speech" : `${c}`
+                };
+
+                
+            //else if query term is equal to the current semester
             }else{
+              
+              
+              //data is a dialogflow json key
+      
+              //if request is from facebook, the facebook bot will parse the text and the quick_replies
+              //else string in the speech key will be displayed
+
+              //courses will be displayed and user will be asked if they want to 
+              //view courses from the next semester
+
+
+              //***NOTE*** quick_replies are facebook's json keys not dialogflow's
+
+
               reply = {"data" : 
                      {
                       "facebook" : {
@@ -270,29 +289,54 @@ module.exports = async function (req,res){
                     };
             }
 
+          
+          //respond with the reply
           res.status(200).json(reply);
         });
         
        
-
+      //else if the course is provided
       }else if (course != ""){
-
+        
+        
+        //pass the parameters to the getCourse module 
         getCourse(fName, lName, queryTerm, course)
           .then(c => {
-          
-            if(queryTerm.toUpperCase() == nextSemester.toUpperCase()){
-               reply = {"data" : 
-                     {
-                      "facebook" : {
+          //c -> all the courses returned by the request
 
-                          "text": `${c}`  ,
-                        }
 
-                      },
-                      "speech" : `${c}`
-                    };
+          //if query term is equal to the next semester
+          //don't ask the user if they want to view courses
+          //from the next semester
+          if(queryTerm.toUpperCase() == nextSemester.toUpperCase()){
+           reply = {"data" : 
+                 {
+                  "facebook" : {
 
+                      "text": `${c}`  ,
+                    }
+
+                  },
+                  "speech" : `${c}`
+                };
+
+                
+            //else if query term is equal to the current semester
             }else{
+              
+              
+              //data is a dialogflow json key
+      
+              //if request is from facebook, the facebook bot will parse the text and the quick_replies
+              //else string in the speech key will be displayed
+
+              //courses will be displayed and user will be asked if they want to 
+              //view courses from the next semester
+
+
+              //***NOTE*** quick_replies are facebook's json keys not dialogflow's
+
+
               reply = {"data" : 
                      {
                       "facebook" : {
@@ -318,8 +362,8 @@ module.exports = async function (req,res){
                     };
             }
 
-         
-
+          
+          //respond with the reply
           res.status(200).json(reply);
         });
         

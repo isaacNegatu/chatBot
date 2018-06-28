@@ -51,7 +51,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
                   return co == d.courseID;
                 });
 
-                //if the course doesn't exist alreay, add it to the array
+                //if the course doesn't exist already, add it to the array
                 if(!course ){
                   courseList.push(d);
                 }
@@ -91,7 +91,6 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
             if(flag){
               
               
-
               var realStr = str.substr(0,str.length-2);
               reply = `${realStr}.`;
             }else{
@@ -128,7 +127,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
               });
 
              
-              //
+              //if the course doesn't exist already, add it to the array
               if(!course ){
                 courseList.push(d);
               }
@@ -138,9 +137,14 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
           })
           .then(function (){
           
+          
             let flag = false;
           
+            //append all the courses to a string which is going to be replied to the user
             courseList.forEach(function (co){
+              //course -> each course
+              
+              //get all the information about the current course
               let sub = co.subject;
               let num = co.number;
               let sec = co.section;
@@ -148,6 +152,7 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
               let days = co.meetingDetails.days;
               let time = co.meetingDetails.time;
               
+              //term in the DB is in the form of 'Summer 2018' so the following code gets the term only
               let termFromDB = co.semester.split(' ')[0];
             
               //populate string of courses taught in the requested term and course
