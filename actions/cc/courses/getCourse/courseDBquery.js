@@ -13,6 +13,8 @@ let Faculty = require("../../../../model/facultyStaffTest");     //facutly model
     
     @precondition - none
     
+    @return - string - courses requested
+    
     reply : string - the final reply
     
     courseList : array - used to append all the courses retrieved from the DB
@@ -41,8 +43,10 @@ let Faculty = require("../../../../model/facultyStaffTest");     //facutly model
       then : after getting all the courses append them to the courseList array
       
       then : go through the courseList array and append all the courses corresponding 
-             to the current semester AND the couresto the reply string
-            
+             to the current semester AND the course queriedto the reply string
+             
+    
+    return reply
       
       
     
