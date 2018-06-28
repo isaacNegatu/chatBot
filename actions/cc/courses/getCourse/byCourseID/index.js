@@ -51,7 +51,7 @@ let Faculty = require("../../../../../model/facultyStaffTest"); // import /model
 
 
 module.exports = async function (req, res){
-  //default sppech
+  //default reply object
   let reply = {'speech' : "The course doesn't exist"};  
   
   //get course
@@ -119,10 +119,17 @@ module.exports = async function (req, res){
       //Query the database with subject, course number and term
       await Course.find({ subject : subject , number : courseNumber, semester: qTerm}, function(err, docs){
 
+        
+        //if no document is found
         if (!docs.length){
           reply = {'speech' : 'Course not Found' };
-        }else{
+          
+          
+        }else{     //if document or documents are found
           docs.forEach(function(co){
+            //co -> each course
+            
+            //get all the information about each document
             let sub = co.subject;
             let num = co.number;
             let sec = co.section;
@@ -132,10 +139,13 @@ module.exports = async function (req, res){
             let time = co.meetingDetails.time;
             let termFromDB = co.semester;
 
-
+  
+            //append to a string declared above
             str += `${sub}-${num}.${sec} | ${tit} | ${instruct} | ${days} | ${time} | ${termFromDB} , `; 
 
           });
+          
+          //get rid of comma and append a 'period' at the end
           var realStr = str.substr(0,str.length-2);
           reply = {'speech' : realStr  + "."}; 
         }
@@ -145,6 +155,9 @@ module.exports = async function (req, res){
 
     }
   
+  
+  
+    //respond with the reply object
      res.status(200).json(reply);
 
 }

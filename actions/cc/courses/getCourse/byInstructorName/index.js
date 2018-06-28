@@ -1,12 +1,51 @@
-let getCourse = require("../courseDBquery");     //custom module to query db
-let os = require("os");                          //use for link breaks in platform replies
+let getCourse = require("../courseDBquery");     //import /courseDBquery module
+let os = require("os");                          //import native module used for line breaks
+
+
+/* 
+  getCurrentAndNextSemester()
+  
+    @precondition -- none
+    
+    gets the current date
+    sets August 15 as the safezone 
+    sets next year to the current year
+    
+    if the current date is greater than the safe zone, we'll add one more
+    year to the next year since spring will be in the next year
+    
+    we get the start dates for all three semesters
+    
+    if else statement determining what the current and next semesters are
+    then plug those two values in an array and return them
+    
+    
+    
+  ananymous async function (req, res)
+    @param req : JSON - request, POST from client (Dialogflow)
+    @param res : JSON - response, POST to client (Dialogflow)
+    
+    @Precondition -- post request by dialogflow webhook property - action : 'cc.courses.getCourse.byInstructorName'
+    
+    gets Dialogflow request
+      (optional) gets 'course' from request JSON / req.body.result.parameters.courses
+      gets 'fName' from request JSON / req.body.result.parameters.fName
+      gets 'lName' from request JSON / req.body.result.parameters.lName
+      (optional) gets 'term' from request JSON / req.body.result.parameters.term
+      
+    reply : JSON object to be responded with
+    
+    semester: gets the current and the next semester
+    
+    if term is provided, use the provided term, if not use the current term
 
 
 
+*/
 
 
 //This function will return the current and next semester
-function getCurrentSemester(n){
+function getCurrentAndNextSemester(){
   let currentDate = new Date();
   let semester = "";
   let nextSemester = "";
@@ -60,16 +99,14 @@ module.exports = async function (req,res){
   //database format
   var fullName = `${lName},${fName}`;
   
-  let semesters = getCurrentSemester();
+  let semesters = getCurrentAndNextSemester();
   
   let currentSemester = semesters[0];
   let nextSemester = semesters[1];
   
   let queryTerm = (term == "")? currentSemester: term;
   
-  
-  console.log(currentSemester + " " + nextSemester);
-  
+    
   
   if (course.length == 0 && term.length == 0){
     
