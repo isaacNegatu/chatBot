@@ -55,6 +55,8 @@ let os = require("os");                          //import native module used for
         reply with the info from the current semester and ask if the user would
         like to view courses from the next semester
         
+      respond the the reply
+        
     else if term is provided and course isn't: 
       getCourse(fName, lName, queryTerm):
         @param fName - string - first name got from the request
@@ -63,9 +65,17 @@ let os = require("os");                          //import native module used for
         
         @return c - string - all the courses appended together
         
+      after the above function returns the string we append it to the reply 
+      object and format it according to the platform which the request came from
+      
+      if the requested term is the same as the next semester:
+          reply with the course taught for next semester
+      else if the requested term is the current term:
+          reply with the courses from the curent semester and ask if the user
+          would like to view courses from the next semester
+      
+      respond the the reply
         
-      
-      
     else if course is provided:
     
       getCourse(fName, lName, queryTerm, course):
@@ -76,31 +86,42 @@ let os = require("os");                          //import native module used for
         
         @return c - string - all the courses appended together
         
-        if the requested term is the same as the next semester:
-          reply with the course taught
-      
-      
+      if the requested term is the same as the next semester:
+        reply with the course taught for next semester
+      else if the requested term is the current term:
+        reply with the courses from the curent semester and ask if the user
+        would like to view courses from the next semester
+        
+      respond with the reply
 
 */
 
 
 //This function will return the current and next semester
 function getCurrentAndNextSemester(){
-  let currentDate = new Date();
-  let semester = "";
-  let nextSemester = "";
-    
-  let fallSemesterSafeZone = new Date (`August 15 ${currentDate.getFullYear()}`);
-  let nextYear = currentDate.getFullYear();
   
-  if (currentDate > fallSemesterSafeZone){
-    nextYear++;
-  }
+  
+  let currentDate = new Date();        //current date
+  let semester = "";                   //current semester
+  let nextSemester = "";               //next semester
+    
+  
+  //fall semester safe zone (aug 15)
+  let fallSemesterSafeZone = new Date (`August 15 ${currentDate.getFullYear()}`);
+  
+  //if the date is more the the fall safe zone,
+  //next year will be the upcoming year
+  //else next year will be the current year
+  let nextYear = currentDate > fallSemesterSafeZone? currentDate.getFullYear()+1 : currentDate.getFullYear();
+  
 
+
+  //start dates for each semester
   let fallStartDate = new Date(`August 10 ${currentDate.getFullYear()}`);
   let summerStartDate = new Date(`May 12 ${nextYear}`);
   let springStartDate = new Date(`Decemeber 15 ${nextYear}`);
   
+  //if else statement deciding which semester it is and setting current and next semester
   if(currentDate > fallStartDate && currentDate <= springStartDate){
     semester = "fall";
     nextSemester = "spring";
@@ -111,14 +132,16 @@ function getCurrentAndNextSemester(){
     semester = "summer";
     nextSemester = "fall";
   }
-   
+  
+  
+  //return current and next semester 
   return [semester, nextSemester];
 }
 
 
 
 
-
+//module exporting an async funciton
 module.exports = async function (req,res){
  
   //default reply
@@ -130,6 +153,7 @@ module.exports = async function (req,res){
   let course = (req.body.result.parameters.courses) ? req.body.result.parameters.courses.split('-'): "";
   let courseSubject = course[0];
   let courseNumber = course[1];
+  
   
   
   let fName = req.body.result.parameters.fName; 
