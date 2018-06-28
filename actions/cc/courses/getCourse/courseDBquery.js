@@ -3,6 +3,23 @@ let Course = require("../../../../model/course");                //course model
 let Faculty = require("../../../../model/facultyStaffTest");     //facutly model
 
 
+/*
+
+  ananymous async function (fName, lName, term, course):
+    @params: fName - string - first name of the instructor  : default- ''
+    @params: lName - string - last name of the instructor   : default- ''
+    @params: term - string - term query for the db : default - ''
+    @params: course - array - course number and course subject to be queried : default []
+    
+    @precondition - none
+    
+    reply : string - the final reply
+    
+    str : string - used to 
+
+
+*/
+
 
 module.exports = async function (fName = "" , lName = "" , term = "", course = []) {
   
@@ -156,12 +173,13 @@ module.exports = async function (fName = "" , lName = "" , term = "", course = [
               let termFromDB = co.semester.split(' ')[0];
             
               //populate string of courses taught in the requested term and course
-              if(term == termFromDB && sub == course[0] && num == course[1]){
+              if(term == termFromDB && sub == courseSubject && num == courseNumber){
                 str += `${sub}-${num}.${sec} | ${tit} | ${days} | ${time} | ${termFromDB} , `; 
                 flag = true;
               }
             })
           
+          //glag is used to make sure the string isn't empty
           if(flag){
             
             var realStr = str.substr(0,str.length-2);
